@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scope-video"
+version = "0.1.0"
+description = "SCoPE camera control for Wan2.2 video diffusion transformers"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+authors = [
+    {name = "Minghao Yin"},
+    {name = "Jiahao Lu"},
+    {name = "Wenbo Hu"},
+    {name = "Wang Zhao"},
+    {name = "Ying Shan"},
+    {name = "Kai Han"},
+]
+# Pins mirror the ucpe_v11 uv environment the released weights were trained and
+# evaluated in. torch / torchvision are locked to the exact versions and CUDA
+# build (cu128) used for the released checkpoints: switching the torch version
+# changes numerical outputs, so reproduce this environment exactly.
+dependencies = [
+    "av>=17,<18",
+    "einops>=0.8,<0.9",
+    "ftfy>=6.3,<7",
+    "huggingface-hub>=1.0,<2",
+    "imageio>=2.37,<3",
+    "imageio-ffmpeg>=0.6,<0.7",
+    "lightning>=2.6,<2.7",
+    "modelscope>=1.35,<2",
+    "numpy>=2.4,<3",
+    "pillow>=12,<13",
+    "protobuf>=6,<7",
+    "pyyaml>=6,<7",
+    "safetensors>=0.7,<0.8",
+    "scipy>=1.15,<2",
+    "sentencepiece>=0.2,<0.3",
+    "torch==2.9.1",
+    "torchvision==0.24.1",
+    "tqdm>=4.67,<5",
+    "transformers>=5,<6",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1"]
+# Camera-frustum / WASD overlay tool (scripts/overlay_camera.py).
+viz = ["matplotlib>=3.10,<4"]
+
+[tool.setuptools.packages.find]
+include = ["scope*", "diffsynth*"]
+
+# uv resolves torch / torchvision from the PyTorch cu128 wheel index, matching
+# the ucpe_v11 training/eval environment (CUDA 12.8). With plain pip, pass
+# --extra-index-url https://download.pytorch.org/whl/cu128 instead.
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

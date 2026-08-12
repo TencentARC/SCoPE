@@ -1,0 +1,956 @@
+{
+  "schema_version": 2,
+  "coordinate_convention": "OpenCV camera-to-world; x_fov is horizontal radians",
+  "defaults": {
+    "case": "ai-airmountains",
+    "trajectory": "env_scenic_grand_tour_22"
+  },
+  "cases": [
+    {
+      "id": "ai-airmountains",
+      "category": "AI image",
+      "source_id": "airmountains",
+      "first_frame": "assets/ai-airmountains/first_frame.png",
+      "caption": "A vast sky filled with multiple floating islands of different sizes, suspended above a dense cloud layer. Each island has distinct terrain such as cliffs, forests, stone ruins, and grassy plateaus. Large waterfalls fall from the edges of islands into the clouds below, creating vertical movement through space. Some islands are connected by narrow stone bridges or broken ancient structures, while others float independently at different heights and distances, forming a layered three-dimensional navigable space. Birds or distant flying creatures move between islands, enhancing depth and scale. Bright daylight above the cloud sea with soft volumetric haze. Cinematic fantasy realism, natural lighting, subtle atmospheric scattering.",
+      "x_fov": 1.4078388214111328,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "env_scenic_grand_tour_22",
+          "pose": "poses/ai-airmountains/env_scenic_grand_tour_22.npy",
+          "pose_sha256": "781774d9246222deaed32df72b0aac124f3e3765e25e31f9eb9855485e45e576"
+        },
+        {
+          "id": "env_scenic_spiral_climb_20",
+          "pose": "poses/ai-airmountains/env_scenic_spiral_climb_20.npy",
+          "pose_sha256": "375104d5f00a5d014866ef0b957bd967dea66f983ce27659dbbd9aade6469e1d"
+        },
+        {
+          "id": "env_scenic_pullback_rise_18",
+          "pose": "poses/ai-airmountains/env_scenic_pullback_rise_18.npy",
+          "pose_sha256": "637a3e07673fa3d27276ee28d774c1a9056140c4489803853325877105fc4e11"
+        },
+        {
+          "id": "env_scenic_push_sweep_15",
+          "pose": "poses/ai-airmountains/env_scenic_push_sweep_15.npy",
+          "pose_sha256": "881c8b2c39d29358f8f6593a78326036987de34214bbd4be5ad81ebbd0444207"
+        },
+        {
+          "id": "env_scenic_s_curve_reveal_21",
+          "pose": "poses/ai-airmountains/env_scenic_s_curve_reveal_21.npy",
+          "pose_sha256": "e66eff08929d7fb2f32120aba087e922156036f2e7928e29aa346d20f318ba64"
+        },
+        {
+          "id": "env_scenic_wide_orbit_16",
+          "pose": "poses/ai-airmountains/env_scenic_wide_orbit_16.npy",
+          "pose_sha256": "6a59161bbe210b16cfd36780d7e193a1f8f3d715b10568e097becea46ebaa05b"
+        }
+      ],
+      "first_frame_sha256": "d4635c2c30ba0774abc6ee5742c022e6501a4d45da513d834c1f9bd82e5a16b0",
+      "provenance": {
+        "first_frame": "AI gallery source image identified by source_id=airmountains",
+        "caption": "Prompt from the matching AI gallery sweep manifest for source_id=airmountains",
+        "pose": "Named synthetic camera trajectories from the matching gallery evaluation archive"
+      }
+    },
+    {
+      "id": "ai-valley",
+      "category": "AI image",
+      "source_id": "valley",
+      "first_frame": "assets/ai-valley/first_frame.png",
+      "caption": "A wide alpine valley surrounded by tall snow-covered mountains. In the center, a calm lake reflects the sky and surrounding peaks. The valley floor contains open grasslands, scattered pine forests, rocky slopes, and small villages connected by winding dirt roads and trails. A river flows from the mountains through the valley into the lake, forming a continuous natural path through the environment. The terrain has large-scale depth variation, allowing movement from foreground hills down into the valley and toward distant settlements. The space is open and expansive with clear sightlines across long distances. Soft morning sunlight with atmospheric haze in the far mountains. Realistic natural environment, subtle cinematic tone, physically based rendering.",
+      "x_fov": 1.4078388214111328,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "env_scenic_crane_arc_17",
+          "pose": "poses/ai-valley/env_scenic_crane_arc_17.npy",
+          "pose_sha256": "051cb81e95c3dfa0285fab282ad20006ab2bd5e5b9530779433dad036a5ec1d2"
+        },
+        {
+          "id": "env_scenic_wide_orbit_16",
+          "pose": "poses/ai-valley/env_scenic_wide_orbit_16.npy",
+          "pose_sha256": "6a59161bbe210b16cfd36780d7e193a1f8f3d715b10568e097becea46ebaa05b"
+        },
+        {
+          "id": "env_scenic_s_curve_reveal_21",
+          "pose": "poses/ai-valley/env_scenic_s_curve_reveal_21.npy",
+          "pose_sha256": "e66eff08929d7fb2f32120aba087e922156036f2e7928e29aa346d20f318ba64"
+        },
+        {
+          "id": "env_scenic_pullback_rise_18",
+          "pose": "poses/ai-valley/env_scenic_pullback_rise_18.npy",
+          "pose_sha256": "637a3e07673fa3d27276ee28d774c1a9056140c4489803853325877105fc4e11"
+        },
+        {
+          "id": "env_scenic_flyover_left_19",
+          "pose": "poses/ai-valley/env_scenic_flyover_left_19.npy",
+          "pose_sha256": "1028e9a4d9860a48f82fcfc912d6ba8666ace9f70812cfba4e2991bd6edf2c83"
+        }
+      ],
+      "first_frame_sha256": "60a763f2d11467cfb7198aa3e5c5f7d4c1f917df641819510f28cef25c4ba134",
+      "provenance": {
+        "first_frame": "AI gallery source image identified by source_id=valley",
+        "caption": "Prompt from the matching AI gallery sweep manifest for source_id=valley",
+        "pose": "Named synthetic camera trajectories from the matching gallery evaluation archive"
+      }
+    },
+    {
+      "id": "ai-middleages",
+      "category": "AI image",
+      "source_id": "middleages",
+      "first_frame": "assets/ai-middleages/first_frame.png",
+      "caption": "A vast medieval valley with rolling green hills and a winding river flowing through the landscape. A stone bridge connects two small villages built along the riverbanks, with wooden houses, farms, and scattered windmills. In the distance, a large stone castle sits on top of a hill surrounded by forests, with mountain ranges extending far into the horizon. The terrain is open and continuous, with paths leading from the foreground into multiple directions through fields, forests, and small settlements. The composition emphasizes long traversal distance and clear navigable routes through the environment. Soft daylight with mild shadows and natural atmospheric perspective. Unreal Engine 5 style, realistic rendering, subtle cinematic lighting.",
+      "x_fov": 1.4078388214111328,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "env_scenic_grand_tour_22",
+          "pose": "poses/ai-middleages/env_scenic_grand_tour_22.npy",
+          "pose_sha256": "781774d9246222deaed32df72b0aac124f3e3765e25e31f9eb9855485e45e576"
+        },
+        {
+          "id": "env_scenic_push_sweep_15",
+          "pose": "poses/ai-middleages/env_scenic_push_sweep_15.npy",
+          "pose_sha256": "881c8b2c39d29358f8f6593a78326036987de34214bbd4be5ad81ebbd0444207"
+        },
+        {
+          "id": "env_scenic_pullback_rise_18",
+          "pose": "poses/ai-middleages/env_scenic_pullback_rise_18.npy",
+          "pose_sha256": "637a3e07673fa3d27276ee28d774c1a9056140c4489803853325877105fc4e11"
+        },
+        {
+          "id": "env_scenic_crane_arc_17",
+          "pose": "poses/ai-middleages/env_scenic_crane_arc_17.npy",
+          "pose_sha256": "051cb81e95c3dfa0285fab282ad20006ab2bd5e5b9530779433dad036a5ec1d2"
+        },
+        {
+          "id": "greek_spiral_rise_13",
+          "pose": "poses/ai-middleages/greek_spiral_rise_13.npy",
+          "pose_sha256": "150e1d068f58e82d5d46d2d9ad85f3faa2c4d66330b909bf9f7d772970a568ab"
+        }
+      ],
+      "first_frame_sha256": "3dc9835ffaf2363ba074daf66a7224acdab065fa3a9e7c45ab2da40c32267d03",
+      "provenance": {
+        "first_frame": "AI gallery source image identified by source_id=middleages",
+        "caption": "Prompt from the matching AI gallery sweep manifest for source_id=middleages",
+        "pose": "Named synthetic camera trajectories from the matching gallery evaluation archive"
+      }
+    },
+    {
+      "id": "omni-stained-glass-hall",
+      "category": "OmniWorld",
+      "source_id": "0b3caf48b79d_split3_000414",
+      "first_frame": "assets/omni-stained-glass-hall/first_frame.png",
+      "caption": "A character in a red vest and white shirt walks steadily through an elaborate interior characterized by stained glass windows and ornate wooden architecture. As the character advances, the camera follows closely from behind, providing a clear view of the detailed surroundings. The character moves towards a large, decorated door on the right, passing by a staircase on the left and a central archway. The environment is dimly lit, enhancing the intricate details of the stained glass and woodwork. The character’s pace is constant, and the camera subtly adjusts to maintain focus on the advancing figure. The floor is scattered with small objects, adding to the scene's atmospheric depth.",
+      "x_fov": 1.605685712012363,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "dolly_in",
+          "pose": "poses/omni-stained-glass-hall/dolly_in.npy",
+          "gallery_entry": "0b3caf48b79d_split3_000414__dolly_in_page_pip",
+          "pose_sha256": "b68349239f4332a0eeba87c4893ad0d778475fab4dcab27855d0b13a367ed368"
+        },
+        {
+          "id": "real_split2_000209",
+          "pose": "poses/omni-stained-glass-hall/real_split2_000209.npy",
+          "gallery_entry": "0b3caf48b79d_split3_000414__real_split2_000209_page_pip",
+          "pose_sha256": "6280a0dd047e04df5ef1b1dbd826e637901ce1e7f373f783d9d5ff91dc0b1abe"
+        },
+        {
+          "id": "real_split3_000334",
+          "pose": "poses/omni-stained-glass-hall/real_split3_000334.npy",
+          "gallery_entry": "0b3caf48b79d_split3_000414__real_split3_000334_page_pip",
+          "pose_sha256": "7322a95cb9cd33e99a7697dc570ba9ec286888c8eb88a3bdef1653fa88323775"
+        },
+        {
+          "id": "real_split3_000374",
+          "pose": "poses/omni-stained-glass-hall/real_split3_000374.npy",
+          "gallery_entry": "0b3caf48b79d_split3_000414__real_split3_000374_page_pip",
+          "pose_sha256": "15e39b2f57965464647a109e9ab2f9cf267cedb8d469f294673c53a7d8e8844d"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-stained-glass-hall/truck_right.npy",
+          "gallery_entry": "0b3caf48b79d_split3_000414__truck_right_page_pip",
+          "pose_sha256": "214091874d024186d3e103c2b20a56e8bea4854c9821ec899d4fabd1b135c74d"
+        }
+      ],
+      "first_frame_sha256": "777f232c0a44376414937ff838c93f73f0ccb3a0d88d4b79b6c92534d73b5484",
+      "provenance": {
+        "first_frame": "Exact OmniWorld color/000414.png for source_id=0b3caf48b79d_split3_000414",
+        "caption": "Exact Video_Caption from OmniWorld text/000414_000494.json",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-horse-trail",
+      "category": "OmniWorld",
+      "source_id": "d55850928ed4_split0_000001",
+      "first_frame": "assets/omni-horse-trail/first_frame.png",
+      "caption": "A character rides a white horse steadily along a rugged dirt path. The rider, dressed in dark attire, holds the reins firmly, maintaining balance and control. The path meanders through rocky terrain interspersed with patches of grass and shrubs. To the left, a wooden fence lines the trail. In the distance, the landscape opens up to reveal rolling hills covered in vegetation and distant mountains under a bright sky. The camera stays fixed in a thirdperson view, slightly elevated and positioned behind the character, ensuring a continuous and stable perspective of the journey. The environment remains static, emphasizing the character's steady progression through the natural setting.",
+      "x_fov": 1.528792973953295,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/omni-horse-trail/crane_up_fwd.npy",
+          "gallery_entry": "d55850928ed4_split0_000001__crane_up_fwd_page_pip",
+          "pose_sha256": "b833e4dca6fb0f6430a540ebb3145885169edf2e74a82f230c62990b48ef5c7e"
+        },
+        {
+          "id": "real_split1_000443",
+          "pose": "poses/omni-horse-trail/real_split1_000443.npy",
+          "gallery_entry": "d55850928ed4_split0_000001__real_split1_000443_page_pip",
+          "pose_sha256": "34be332e90479977e2ee8d3cf12281c6a63ff6fc66717a80389bd9692223b5f9"
+        },
+        {
+          "id": "real_split2_000562",
+          "pose": "poses/omni-horse-trail/real_split2_000562.npy",
+          "gallery_entry": "d55850928ed4_split0_000001__real_split2_000562_page_pip",
+          "pose_sha256": "9ab4c21197e14f4a6407f732bc184522fa99c696eb03627410e4a76ad547f2a3"
+        },
+        {
+          "id": "real_split3_001324",
+          "pose": "poses/omni-horse-trail/real_split3_001324.npy",
+          "gallery_entry": "d55850928ed4_split0_000001__real_split3_001324_page_pip",
+          "pose_sha256": "60a5701c0bc1d2475953ee4affab14b83fe1d5fb5eeb955e6a0357ea2f54d8b7"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/omni-horse-trail/snake_fwd.npy",
+          "gallery_entry": "d55850928ed4_split0_000001__snake_fwd_page_pip",
+          "pose_sha256": "829d53dddeeae194b6a757b6266110e737a8ddca5aec676ee9a8ef1615a441a9"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-horse-trail/truck_right.npy",
+          "gallery_entry": "d55850928ed4_split0_000001__truck_right_page_pip",
+          "pose_sha256": "07cfa427690c19db9c0cfc2b5a94e45b7416fefe33284371bb071f058553b2da"
+        }
+      ],
+      "first_frame_sha256": "f202ce09538f55b159863b4da9fe168ec11ba20ad9e5bdd408c567d125184978",
+      "provenance": {
+        "first_frame": "OmniWorld color frame identified by source_id=d55850928ed4_split0_000001",
+        "caption": "Caption metadata for the same OmniWorld scene and frame range",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-misty-forest",
+      "category": "OmniWorld",
+      "source_id": "135f09dd0200_split0_000001",
+      "first_frame": "assets/omni-misty-forest/first_frame.png",
+      "caption": "A character in red armor and a straw hat progresses along a forest path, their steps deliberate as they navigate over stones and through patches of grass. The camera follows closely from behind, providing a clear view of their cautious advance. The environment is a misty forest with ancient stone structures on the left and mosscovered cliffs on the right. The dense fog and surrounding greenery contribute to a mysterious ambiance. The character remains the focal point, with the camera maintaining a steady position, emphasizing their interaction with the serene yet enigmatic surroundings.",
+      "x_fov": 1.118471204764044,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "real_split0_000041",
+          "pose": "poses/omni-misty-forest/real_split0_000041.npy",
+          "gallery_entry": "135f09dd0200_split0_000001__real_split0_000041_page_pip",
+          "pose_sha256": "262d3b5e508d086b39e31d5f2385ec3295db923c82c11a063e546f7bd9ca9242"
+        },
+        {
+          "id": "real_split0_000081",
+          "pose": "poses/omni-misty-forest/real_split0_000081.npy",
+          "gallery_entry": "135f09dd0200_split0_000001__real_split0_000081_page_pip",
+          "pose_sha256": "004038760595ef7e87ac1411b40181c8faa5dad56c6cc14a7be2282f90b11a0b"
+        },
+        {
+          "id": "real_split0_000161",
+          "pose": "poses/omni-misty-forest/real_split0_000161.npy",
+          "gallery_entry": "135f09dd0200_split0_000001__real_split0_000161_page_pip",
+          "pose_sha256": "0b1f66c66610a86c730faa8bfffc3ad30ff9f85ade6e22f032ff5fb0a85b30f9"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/omni-misty-forest/snake_fwd.npy",
+          "gallery_entry": "135f09dd0200_split0_000001__snake_fwd_page_pip",
+          "pose_sha256": "6230189e41a2b7a5be8741b32149e1b4cb5f2f00d6d6c7646d0314fc4dd63dc5"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-misty-forest/truck_right.npy",
+          "gallery_entry": "135f09dd0200_split0_000001__truck_right_page_pip",
+          "pose_sha256": "b047d3ed6c49503feb9ef25020b68c10f98fdfd01e748e997211a70bed882c6e"
+        }
+      ],
+      "first_frame_sha256": "c7f16c34e01763c769b908a2cc4411110e34cd8ca9e2755441fc81c4e67c8895",
+      "provenance": {
+        "first_frame": "Exact OmniWorld color/000001.png for source_id=135f09dd0200_split0_000001",
+        "caption": "Exact Video_Caption from OmniWorld text/000001_000081.json",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-rocky-forest",
+      "category": "OmniWorld",
+      "source_id": "135f09dd0200_split3_000594",
+      "first_frame": "assets/omni-rocky-forest/first_frame.png",
+      "caption": "A character dressed in a striking red robe and golden details holds a staff while walking along a forest trail. The character's deliberate steps navigate the rocky, mossladen path, showcasing interaction with the natural surroundings. The camera follows closely from behind, ensuring the character remains the focal point. The dense forest is filled with rocks, ferns, and moss, and a small waterfall is visible in the distance, contributing to the serene yet rugged atmosphere. The lighting is subdued, enhancing the sense of a quiet, natural setting. As the character progresses, the camera keeps pace, offering a continuous view of the journey through this tranquil wilderness.",
+      "x_fov": 1.1218608766100027,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "real_split0_000041",
+          "pose": "poses/omni-rocky-forest/real_split0_000041.npy",
+          "gallery_entry": "135f09dd0200_split3_000594__real_split0_000041_page_pip",
+          "pose_sha256": "dfbeaf0e4b35f78557cb5688d579b317f7b237844a06cb7e97932e003266a3f9"
+        },
+        {
+          "id": "real_split0_000081",
+          "pose": "poses/omni-rocky-forest/real_split0_000081.npy",
+          "gallery_entry": "135f09dd0200_split3_000594__real_split0_000081_page_pip",
+          "pose_sha256": "c5ced0987fc22effd5ae312235fcb33fdf01ee6988852e1253324c649a9e722f"
+        },
+        {
+          "id": "real_split3_000794",
+          "pose": "poses/omni-rocky-forest/real_split3_000794.npy",
+          "gallery_entry": "135f09dd0200_split3_000594__real_split3_000794_page_pip",
+          "pose_sha256": "04237e4238340c57b6fcf2403bd0241b5db80674796d58b0d3b99bf8a5d725b2"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/omni-rocky-forest/snake_fwd.npy",
+          "gallery_entry": "135f09dd0200_split3_000594__snake_fwd_page_pip",
+          "pose_sha256": "6bcf3090448c0920cb12a5d0f7698452a9e440f2787813edf8f34854a4423eb5"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-rocky-forest/truck_right.npy",
+          "gallery_entry": "135f09dd0200_split3_000594__truck_right_page_pip",
+          "pose_sha256": "9b2db559b5ccb8fae997f93d814028c58203a82e62d7f014fcef12eaaee37755"
+        }
+      ],
+      "first_frame_sha256": "bb82e259dec01d56bf894f9726bf14b27c6ff4c998d8c1bf9e7e4f169ab6c20e",
+      "provenance": {
+        "first_frame": "Exact OmniWorld color/000594.png for source_id=135f09dd0200_split3_000594",
+        "caption": "Exact Video_Caption from OmniWorld text/000594_000674.json",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-urban-street",
+      "category": "OmniWorld",
+      "source_id": "aacef0a798ec_split0_000001",
+      "first_frame": "assets/omni-urban-street/first_frame.png",
+      "caption": "A vibrant urban street scene captures the dynamic interaction between pedestrians and vehicles. The subject walks steadily along the sidewalk, passing by other individuals who are also moving in various directions. The left side of the street features a brightly lit building with colorful advertisements, including a \"HOTEL\" sign. In the center, a multilane road accommodates moving vehicles, bordered by barriers and traffic lights. On the right, another building displays large digital screens and has construction materials near its base. The background includes distant skyscrapers and an elevated walkway connecting buildings. The camera follows the subject from a thirdperson perspective, maintaining a steady position behind and slightly above, ensuring a continuous and stable visual flow as the subject navigates through the bustling cityscape.",
+      "x_fov": 1.7672423878435903,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/omni-urban-street/crane_up_fwd.npy",
+          "gallery_entry": "aacef0a798ec_split0_000001__crane_up_fwd_page_pip",
+          "pose_sha256": "491ff28fee1268c3b1876f2ee9a1fecb2218316c79fe6699471edffed149e0ac"
+        },
+        {
+          "id": "dolly_in",
+          "pose": "poses/omni-urban-street/dolly_in.npy",
+          "gallery_entry": "aacef0a798ec_split0_000001__dolly_in_page_pip",
+          "pose_sha256": "a5eff533f53759512ff157c3d4c81d8d65712bf9e11595eebab97cd4e0d08010"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/omni-urban-street/dolly_out.npy",
+          "gallery_entry": "aacef0a798ec_split0_000001__dolly_out_page_pip",
+          "pose_sha256": "5a79de8ede66258228650f3f1bfd0b4a4095bd4eeb7e3febbfd8b8185b454794"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/omni-urban-street/orbit_left.npy",
+          "gallery_entry": "aacef0a798ec_split0_000001__orbit_left_page_pip",
+          "pose_sha256": "e54d1c3683bf93f1ea786cc3b90f5e68ec032f189d53be84db5400ab3b069091"
+        },
+        {
+          "id": "real_split2_000442",
+          "pose": "poses/omni-urban-street/real_split2_000442.npy",
+          "gallery_entry": "aacef0a798ec_split0_000001__real_split2_000442_page_pip",
+          "pose_sha256": "b87dde469f5494d47292b6479295d01094f85a7623361a6c05b34aa84f9a2a83"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-urban-street/truck_right.npy",
+          "gallery_entry": "aacef0a798ec_split0_000001__truck_right_page_pip",
+          "pose_sha256": "744f45afcc87f971d6ebe711acba595e1b43b2ad7d6d8f4d63727284b90ebe7f"
+        }
+      ],
+      "first_frame_sha256": "1cca1c8aa3a3e6f557914b16a8b005e0ed79983f5f7c5d75afba6801e16d356b",
+      "provenance": {
+        "first_frame": "OmniWorld color frame identified by source_id=aacef0a798ec_split0_000001",
+        "caption": "Caption metadata for the same OmniWorld scene and frame range",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-forest",
+      "category": "OmniWorld",
+      "source_id": "afafe7b21713_split0_000001",
+      "first_frame": "assets/omni-forest/first_frame.png",
+      "caption": "A character in metallic armor walks through a sunlit forest, moving steadily across rocky and grassy terrain. The character carries a shield on the back and progresses forward without altering pace or interacting with the environment. The lush greenery of the forest surrounds the character, with trees and flowering plants adding depth and vibrancy. Sunlight filters through the foliage, casting dynamic shadows on the ground. The camera stays fixed behind the character, maintaining a thirdperson view that captures both the character's movement and the scenic backdrop seamlessly. The environment remains tranquil, enhancing the sense of exploration and immersion.",
+      "x_fov": 1.5405785501699365,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "real_split14_003889",
+          "pose": "poses/omni-forest/real_split14_003889.npy",
+          "gallery_entry": "afafe7b21713_split0_000001__real_split14_003889_page_pip",
+          "pose_sha256": "47b5328182d7ed1e0693191cafc634cae0b651abe42a6e47d19de9744cbc1637"
+        },
+        {
+          "id": "real_split1_000201",
+          "pose": "poses/omni-forest/real_split1_000201.npy",
+          "gallery_entry": "afafe7b21713_split0_000001__real_split1_000201_page_pip",
+          "pose_sha256": "2cc8042cd462e3a93ebdfe9f799a3723d40f90c9844b2ce1e884fd5c5100f70f"
+        },
+        {
+          "id": "real_split30_009054",
+          "pose": "poses/omni-forest/real_split30_009054.npy",
+          "gallery_entry": "afafe7b21713_split0_000001__real_split30_009054_page_pip",
+          "pose_sha256": "1f12a4355bb4478e5ff9ca0bf81465f74095b3a625986203bbf037fbcc6336fc"
+        },
+        {
+          "id": "real_split35_011793",
+          "pose": "poses/omni-forest/real_split35_011793.npy",
+          "gallery_entry": "afafe7b21713_split0_000001__real_split35_011793_page_pip",
+          "pose_sha256": "faf46ca213484fb695c1158a19bfac285506c5260a57fb3b1315e409062b9abc"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/omni-forest/snake_fwd.npy",
+          "gallery_entry": "afafe7b21713_split0_000001__snake_fwd_page_pip",
+          "pose_sha256": "6b09cf5ca73f8dd6082972a00e0a230cb6e1b17be96a08cd99388855be2095ae"
+        },
+        {
+          "id": "truck_left",
+          "pose": "poses/omni-forest/truck_left.npy",
+          "gallery_entry": "afafe7b21713_split0_000001__truck_left_page_pip",
+          "pose_sha256": "0dc74ebb6050fe3a4606d2dcfc7d2e315dc7843810370102403f529cc9490ea1"
+        }
+      ],
+      "first_frame_sha256": "dfaa30d5a30e0f117a65638d86402985bb94bef64926d2f6a892d05cc29372a1",
+      "provenance": {
+        "first_frame": "OmniWorld color frame identified by source_id=afafe7b21713_split0_000001",
+        "caption": "Caption metadata for the same OmniWorld scene and frame range",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-greek-square",
+      "category": "OmniWorld",
+      "source_id": "c69bf557af05_split1_000041",
+      "first_frame": "assets/omni-greek-square/first_frame.png",
+      "caption": "A character clad in Greek armor stands in a lively market square, surrounded by stonepaved pathways, wooden crates, and fabricdraped stalls. The setting features classical architecture, including a prominent colonnaded building on the left and a vast cityscape stretching into the distance. The character remains stationary, facing forward, as the camera gradually shifts from a closeup perspective to an expansive aerial view. This transition showcases the intricate details of the marketplace and the sprawling urban landscape, emphasizing the grandeur of the ancient Greek environment. The clear weather and bright sunlight enhance the vividness of the scene, creating a dynamic and immersive atmosphere.",
+      "x_fov": 1.4078388753309232,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/omni-greek-square/crane_up_fwd.npy",
+          "gallery_entry": "c69bf557af05_split1_000041__crane_up_fwd_page_pip",
+          "pose_sha256": "e8f240a5760428854d27d3645277534e0c6da4e9039abb783f0df3cf02a7d4a0"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/omni-greek-square/dolly_out.npy",
+          "gallery_entry": "c69bf557af05_split1_000041__dolly_out_page_pip",
+          "pose_sha256": "cc4b69f68951df03c232c61735aa6c06a58621d1c53269f44022a64dc53f0094"
+        },
+        {
+          "id": "real_split11_000846",
+          "pose": "poses/omni-greek-square/real_split11_000846.npy",
+          "gallery_entry": "c69bf557af05_split1_000041__real_split11_000846_page_pip",
+          "pose_sha256": "68942476b9898b4db2e466351fd4ac7499b416f4c1e566aafaaf64832fd6031d"
+        },
+        {
+          "id": "real_split2_000963",
+          "pose": "poses/omni-greek-square/real_split2_000963.npy",
+          "gallery_entry": "c69bf557af05_split1_000041__real_split2_000963_page_pip",
+          "pose_sha256": "cd192c1c6071fc4c9a05370143324511a3d633c633136a3363fd5ec210eb046a"
+        },
+        {
+          "id": "real_split7_001343",
+          "pose": "poses/omni-greek-square/real_split7_001343.npy",
+          "gallery_entry": "c69bf557af05_split1_000041__real_split7_001343_page_pip",
+          "pose_sha256": "eb9ad3bef6a7a1e06f6d67bbacb7a417108fc9c453aef3fa9bbfc0772da39e5f"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-greek-square/truck_right.npy",
+          "gallery_entry": "c69bf557af05_split1_000041__truck_right_page_pip",
+          "pose_sha256": "276f40b8cdcbebb1f8532fa1c198c5fe329cb73af18c7a0039bddd66bf57dc1f"
+        }
+      ],
+      "first_frame_sha256": "0ca7ebfc91dad925b53a127a16b3fa2957179620d6224ee93d962497ecbec410",
+      "provenance": {
+        "first_frame": "OmniWorld color frame identified by source_id=c69bf557af05_split1_000041",
+        "caption": "Caption metadata for the same OmniWorld scene and frame range",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "omni-night-street",
+      "category": "OmniWorld",
+      "source_id": "ae98e8849eef_split0_000001",
+      "first_frame": "assets/omni-night-street/first_frame.png",
+      "caption": "A nighttime urban scene unfolds with a wet, reflective street lined with palm trees and illuminated by vibrant neon lights. The camera, positioned at street level, steadily advances forward, revealing the dynamic interplay between the wet pavement and the glowing lights. On the left, tall buildings adorned with illuminated signs stand against the dark sky, while a modern structure on the right features eyecatching advertisements. As the camera moves, a car approaches from a distance, its headlights piercing the darkness and growing brighter with each frame. The overall mood is one of a lively yet serene cityscape, with the combination of natural and artificial elements creating a captivating visual experience. The smooth camera movement enhances the sense of forward momentum, drawing attention to the approaching vehicle and the intricate details of the urban environment.",
+      "x_fov": 1.7464506633717816,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/omni-night-street/crane_up_fwd.npy",
+          "gallery_entry": "ae98e8849eef_split0_000001__crane_up_fwd_page_pip",
+          "pose_sha256": "1a42ce05e1589df95c8feb260f9d5ee175c62859f03fbd2da8a36c5a4005ddaf"
+        },
+        {
+          "id": "dolly_in",
+          "pose": "poses/omni-night-street/dolly_in.npy",
+          "gallery_entry": "ae98e8849eef_split0_000001__dolly_in_page_pip",
+          "pose_sha256": "abac1ead43d3fa1a22dea50a0e17a4f697af1d5364f174db5c75d0f69a8094f5"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/omni-night-street/dolly_out.npy",
+          "gallery_entry": "ae98e8849eef_split0_000001__dolly_out_page_pip",
+          "pose_sha256": "04a32bd81566f8c57c81c46da652ffe8ccac3f4036d1da151dcb319cb9a6d198"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/omni-night-street/orbit_left.npy",
+          "gallery_entry": "ae98e8849eef_split0_000001__orbit_left_page_pip",
+          "pose_sha256": "8fea82aefe720cca80f735ae3e654a0a4f832f17bbcd95b03c82f442ac9518c9"
+        },
+        {
+          "id": "real_split0_000041",
+          "pose": "poses/omni-night-street/real_split0_000041.npy",
+          "gallery_entry": "ae98e8849eef_split0_000001__real_split0_000041_page_pip",
+          "pose_sha256": "b65d0ac3eb12baa2a5b4c001ca2f0d5c83ae768dce95ea951fed96611136101d"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/omni-night-street/truck_right.npy",
+          "gallery_entry": "ae98e8849eef_split0_000001__truck_right_page_pip",
+          "pose_sha256": "8b3fd6eb51966617166282960bdd617719d0dbdac0ad2661cb09e9f2354addf6"
+        }
+      ],
+      "first_frame_sha256": "123930a4822ee67b6c53493edc7695b8452889343c53bb132e19b18bafd9f0f2",
+      "provenance": {
+        "first_frame": "OmniWorld color frame identified by source_id=ae98e8849eef_split0_000001",
+        "caption": "Caption metadata for the same OmniWorld scene and frame range",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; intrinsics from the same OmniWorld split"
+      }
+    },
+    {
+      "id": "istock-cyclists-sunset",
+      "category": "iStock",
+      "source_id": "a-man-and-a-woman-ride-sports-bikes-on-the-highway-at-sunset-in-gear-and-protective-gm1170782210-324106554_part1_e2868b4ede_0-481",
+      "first_frame": "assets/istock-cyclists-sunset/first_frame.png",
+      "caption": "A serene moment of two cyclists riding on a road during sunset. The sun is low in the sky, casting a warm, golden light over the scene. The cyclists, a man and a woman, are both wearing helmets and cycling gear. The woman is on the left, wearing a blue and orange top, while the man is on the right, dressed in a white shirt and black shorts. They are riding road bikes with drop handlebars. The road they are on is smooth and straight, with a few trees and grassy areas visible in the background. The camera starts with a close-up of their legs and then pans up to show their upper bodies and faces. The cyclists appear focused and determined as they pedal forward. The camera follows them as they continue to ride, capturing the peacefulness of their journey against the backdrop of the setting sun.",
+      "x_fov": 1.1787489278310146,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/istock-cyclists-sunset/crane_up_fwd.npy",
+          "gallery_entry": "a-man-and-a-woman-ride-sports-bikes-on-the-highway-at-sunset-in-gear-and-protective-gm1170782210-324106554_part1_e2868b4ede_0-481__crane_up_fwd_page_pip",
+          "pose_sha256": "bba172eed96216644fd725aac92e5d5c2a0adeee66d0c0e4adb5b1cfe2763f34"
+        },
+        {
+          "id": "dolly_in",
+          "pose": "poses/istock-cyclists-sunset/dolly_in.npy",
+          "gallery_entry": "a-man-and-a-woman-ride-sports-bikes-on-the-highway-at-sunset-in-gear-and-protective-gm1170782210-324106554_part1_e2868b4ede_0-481__dolly_in_page_pip",
+          "pose_sha256": "b9fe67c8c5a14d4323bdaff3ecdde2004920ed27c0a095156b3f0dba194aae84"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/istock-cyclists-sunset/dolly_out.npy",
+          "gallery_entry": "a-man-and-a-woman-ride-sports-bikes-on-the-highway-at-sunset-in-gear-and-protective-gm1170782210-324106554_part1_e2868b4ede_0-481__dolly_out_page_pip",
+          "pose_sha256": "05248081108b26b82113d584d900a101738ac2fafd5ea613bdbbfd984abf309a"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/istock-cyclists-sunset/orbit_left.npy",
+          "gallery_entry": "a-man-and-a-woman-ride-sports-bikes-on-the-highway-at-sunset-in-gear-and-protective-gm1170782210-324106554_part1_e2868b4ede_0-481__orbit_left_page_pip",
+          "pose_sha256": "7cf132041f22b320c4ee0826b44401e639a692c7797fb9e979a6b46731a36cd8"
+        }
+      ],
+      "first_frame_sha256": "c441622964c99dc20920cd4f0d0c37eec43192a597648cd9b9f08d219791f414",
+      "provenance": {
+        "first_frame": "First decoded frame of the iStock gallery sample identified by source_id=a-man-and-a-woman-ride-sports-bikes-on-the-highway-at-sunset-in-gear-and-protective-gm1170782210-324106554_part1_e2868b4ede_0-481",
+        "caption": "prompt_raw from the camera metadata of the same sample",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov derived from valid intrinsics of the same sample"
+      }
+    },
+    {
+      "id": "istock-deer-field",
+      "category": "iStock",
+      "source_id": "animal-wildlife-deer-run-park-field-flock-summer-reserve-fauna-gm1336653954-417840028_part2_ffc211a8b1_0-263",
+      "first_frame": "assets/istock-deer-field/first_frame.png",
+      "caption": "A herd of elk running across a vast, open grassland. The elk, with their distinctive large antlers, are seen in various shades of brown and tan. The grassland is a mix of green and yellow hues, indicating a mix of vegetation. The sky above is partly cloudy, with patches of blue visible. The elk are spread out but moving together in a coordinated manner, suggesting a sense of unity and purpose. The camera follows the herd, maintaining a steady pace, capturing the fluid motion of the elk as they gallop across the landscape. The background reveals a flat horizon with distant trees and possibly some man-made structures, indicating a rural or semi-rural setting. The overall scene is dynamic, with the elk's movement creating a sense of energy and life in the vast, open space.",
+      "x_fov": 1.456443037990125,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/istock-deer-field/crane_up_fwd.npy",
+          "gallery_entry": "animal-wildlife-deer-run-park-field-flock-summer-reserve-fauna-gm1336653954-417840028_part2_ffc211a8b1_0-263__crane_up_fwd_page_pip",
+          "pose_sha256": "7204907374e56b165da41a0bab8cfc45b9c01d182a7d7ceaa254b2d7fc89c041"
+        },
+        {
+          "id": "dolly_in",
+          "pose": "poses/istock-deer-field/dolly_in.npy",
+          "gallery_entry": "animal-wildlife-deer-run-park-field-flock-summer-reserve-fauna-gm1336653954-417840028_part2_ffc211a8b1_0-263__dolly_in_page_pip",
+          "pose_sha256": "5bb028f1b25a741cfc66432b4ce64085e8a71e9d02aa9e7599a76ca2b9db5bea"
+        },
+        {
+          "id": "real_part1_e5efc62c68_0-253",
+          "pose": "poses/istock-deer-field/real_part1_e5efc62c68_0-253.npy",
+          "gallery_entry": "animal-wildlife-deer-run-park-field-flock-summer-reserve-fauna-gm1336653954-417840028_part2_ffc211a8b1_0-263__real_part1_e5efc62c68_0-253_page_pip",
+          "pose_sha256": "c71ef862e97f088df440103a506624e816f5a88defb6ad4b9963f50c6deacd3e"
+        }
+      ],
+      "first_frame_sha256": "782b6b1693b726f320479a443616ec3927323db4126c7fe80970e3b178e0acdb",
+      "provenance": {
+        "first_frame": "First decoded frame of the iStock gallery sample identified by source_id=animal-wildlife-deer-run-park-field-flock-summer-reserve-fauna-gm1336653954-417840028_part2_ffc211a8b1_0-263",
+        "caption": "prompt_raw from the camera metadata of the same sample",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov derived from valid intrinsics of the same sample"
+      }
+    },
+    {
+      "id": "istock-skier",
+      "category": "iStock",
+      "source_id": "a-wide-angle-male-skier-aged-in-black-equipment-and-white-helmet-with-ski-poles-gm1205256266-347124942_part1_914d782784_0-335",
+      "first_frame": "assets/istock-skier/first_frame.png",
+      "caption": "A snowy mountain landscape under a clear blue sky. A person is skiing down a well-groomed slope, leaving tracks in the snow. The skier is dressed in dark clothing and is using ski poles for balance. The camera follows the skier, providing a first-person perspective of the descent. In the background, there are snow-covered mountains with rocky outcrops. A ski lift with red support towers is visible to the left, and a small building is seen at the bottom of the slope. The skier gracefully maneuvers down the slope, passing by the building and continuing their descent. The camera motion is smooth, following the skier's movements, and captures the vastness of the mountainous terrain.",
+      "x_fov": 1.8251613008896963,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/istock-skier/crane_up_fwd.npy",
+          "gallery_entry": "a-wide-angle-male-skier-aged-in-black-equipment-and-white-helmet-with-ski-poles-gm1205256266-347124942_part1_914d782784_0-335__crane_up_fwd_page_pip",
+          "pose_sha256": "4f1d20f269775112df5d4af194604f38de189d946babcb54dc609c1e35e77800"
+        },
+        {
+          "id": "real_part1_4b3e9a9b48_0-185",
+          "pose": "poses/istock-skier/real_part1_4b3e9a9b48_0-185.npy",
+          "gallery_entry": "a-wide-angle-male-skier-aged-in-black-equipment-and-white-helmet-with-ski-poles-gm1205256266-347124942_part1_914d782784_0-335__real_part1_4b3e9a9b48_0-185_page_pip",
+          "pose_sha256": "cb75f3298c4402272433321577910ff179cc54344a60d37553a5f175822f9119"
+        },
+        {
+          "id": "real_part1_d0eed6b5fe_0-241",
+          "pose": "poses/istock-skier/real_part1_d0eed6b5fe_0-241.npy",
+          "gallery_entry": "a-wide-angle-male-skier-aged-in-black-equipment-and-white-helmet-with-ski-poles-gm1205256266-347124942_part1_914d782784_0-335__real_part1_d0eed6b5fe_0-241_page_pip",
+          "pose_sha256": "00a5e8204d752bac439df78f9b1826e43de3f3bb788208ec8fa6eee5a554f9e6"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/istock-skier/snake_fwd.npy",
+          "gallery_entry": "a-wide-angle-male-skier-aged-in-black-equipment-and-white-helmet-with-ski-poles-gm1205256266-347124942_part1_914d782784_0-335__snake_fwd_page_pip",
+          "pose_sha256": "033d5d90aba159bfbf395e625b0354d710f82fb1558535b6c4ad6328435a7b6e"
+        }
+      ],
+      "first_frame_sha256": "327c7a78a718b4f5405d066355a0f8bb6a5c4a8fb3fe3b8d3a11567c452cc802",
+      "provenance": {
+        "first_frame": "First decoded frame of the iStock gallery sample identified by source_id=a-wide-angle-male-skier-aged-in-black-equipment-and-white-helmet-with-ski-poles-gm1205256266-347124942_part1_914d782784_0-335",
+        "caption": "prompt_raw from the camera metadata of the same sample",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov derived from valid intrinsics of the same sample"
+      }
+    },
+    {
+      "id": "istock-stingray",
+      "category": "iStock",
+      "source_id": "blue-spotted-stingray-in-red-sea-close-up-gm1212442965-351951197_part2_0279a949d5_0-327",
+      "first_frame": "assets/istock-stingray/first_frame.png",
+      "caption": "An underwater scene featuring a blue-spotted stingray swimming near the ocean floor. The stingray has a distinctive pattern of blue spots on its body, which contrasts with its dark background. The camera follows the stingray as it glides over the sandy seabed, passing by various coral formations and rocks. The stingray's movements are smooth and graceful, with its long, slender tail trailing behind. The surrounding environment is filled with marine life, including different types of corals and small fish. The camera zooms in on the stingray, providing a close-up view of its unique markings and texture. The overall scene is serene and vibrant, showcasing the beauty of underwater life.",
+      "x_fov": 1.0611011903843273,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "dolly_in",
+          "pose": "poses/istock-stingray/dolly_in.npy",
+          "gallery_entry": "blue-spotted-stingray-in-red-sea-close-up-gm1212442965-351951197_part2_0279a949d5_0-327__dolly_in_page_pip",
+          "pose_sha256": "20497dc138912eb8587d1cb9699995df78da54453f64253a72b8f4351bb49c9b"
+        },
+        {
+          "id": "real_gt",
+          "pose": "poses/istock-stingray/real_gt.npy",
+          "gallery_entry": "blue-spotted-stingray-in-red-sea-close-up-gm1212442965-351951197_part2_0279a949d5_0-327__real_gt_page_pip",
+          "pose_sha256": "62da0a6514fd0a4e03f5da545da28e874eef105c5855fd15a7f76bd2454ec151"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/istock-stingray/snake_fwd.npy",
+          "gallery_entry": "blue-spotted-stingray-in-red-sea-close-up-gm1212442965-351951197_part2_0279a949d5_0-327__snake_fwd_page_pip",
+          "pose_sha256": "867b364608197fca791fbc6e940e81e44091e9a5cb97c0fa3d11dd02290fe502"
+        },
+        {
+          "id": "truck_left",
+          "pose": "poses/istock-stingray/truck_left.npy",
+          "gallery_entry": "blue-spotted-stingray-in-red-sea-close-up-gm1212442965-351951197_part2_0279a949d5_0-327__truck_left_page_pip",
+          "pose_sha256": "c14cabc38d9e5aff3d527bf1be360101743de7e8dab44c800fab4ea609872f33"
+        }
+      ],
+      "first_frame_sha256": "350d2d6ba8d27748b98d4a70fd74581dfb277b5dbdd1d2d9222c96bb813734a3",
+      "provenance": {
+        "first_frame": "First decoded frame of the iStock gallery sample identified by source_id=blue-spotted-stingray-in-red-sea-close-up-gm1212442965-351951197_part2_0279a949d5_0-327",
+        "caption": "prompt_raw from the camera metadata of the same sample",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov derived from valid intrinsics of the same sample"
+      }
+    },
+    {
+      "id": "istock-city-pond",
+      "category": "iStock",
+      "source_id": "a-woman-walks-along-the-bank-of-the-city-pond-walks-along-the-road-behind-the-fence-gm1345705027-423695997_part1_6b0c7b59e0_0-481",
+      "first_frame": "assets/istock-city-pond/first_frame.png",
+      "caption": "A serene riverside park on a sunny day. The pathway, lined with black lamp posts and benches, winds along the riverbank. The grass is green with patches of dirt, and trees provide shade along the path. A person in a blue dress is seen walking along the pathway, moving from the right side of the frame towards the left. The camera follows the person, maintaining a steady pace. In the background, a red brick tower and a white building with a golden dome are visible, suggesting a historical or cultural site nearby. The sky is clear with a few clouds, indicating pleasant weather. The camera motion is smooth, providing a clear view of the park and the person walking.",
+      "x_fov": 1.413801196282433,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/istock-city-pond/crane_up_fwd.npy",
+          "gallery_entry": "a-woman-walks-along-the-bank-of-the-city-pond-walks-along-the-road-behind-the-fence-gm1345705027-423695997_part1_6b0c7b59e0_0-481__crane_up_fwd_page_pip",
+          "pose_sha256": "83c1eb8d78e2fd7d9f94b8b09843e16feaa34a77dd4d751e67a53990f61117be"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/istock-city-pond/dolly_out.npy",
+          "gallery_entry": "a-woman-walks-along-the-bank-of-the-city-pond-walks-along-the-road-behind-the-fence-gm1345705027-423695997_part1_6b0c7b59e0_0-481__dolly_out_page_pip",
+          "pose_sha256": "71db5bcdd57b8a6de0772fbc522c63089803f9b9e1ec185769164a86bc8ece20"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/istock-city-pond/orbit_left.npy",
+          "gallery_entry": "a-woman-walks-along-the-bank-of-the-city-pond-walks-along-the-road-behind-the-fence-gm1345705027-423695997_part1_6b0c7b59e0_0-481__orbit_left_page_pip",
+          "pose_sha256": "5119f7846aa977041c3a7eaaccfda12ff5bd93c3891fde1f56b334b736b17852"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/istock-city-pond/truck_right.npy",
+          "gallery_entry": "a-woman-walks-along-the-bank-of-the-city-pond-walks-along-the-road-behind-the-fence-gm1345705027-423695997_part1_6b0c7b59e0_0-481__truck_right_page_pip",
+          "pose_sha256": "d338fe0eee105c593dae03a5d4949a0d0aa4f75c7aed7b01f55204a0e9d3fe5b"
+        }
+      ],
+      "first_frame_sha256": "f63a9fa68eb1f83527ab7535c91b2900647572ff0b35dfcc0783022df70abb53",
+      "provenance": {
+        "first_frame": "First decoded frame of the iStock gallery sample identified by source_id=a-woman-walks-along-the-bank-of-the-city-pond-walks-along-the-road-behind-the-fence-gm1345705027-423695997_part1_6b0c7b59e0_0-481",
+        "caption": "prompt_raw from the camera metadata of the same sample",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov derived from valid intrinsics of the same sample"
+      }
+    },
+    {
+      "id": "istock-country-road",
+      "category": "iStock",
+      "source_id": "aerial-view-electric-car-driving-on-country-road-gm541931272-98295151_part1_d2ab3cab2d_0-289",
+      "first_frame": "assets/istock-country-road/first_frame.png",
+      "caption": "A white car driving on a winding road surrounded by lush green grass. The road is narrow and curves gently through the landscape. The car is seen from an aerial perspective, moving forward along the road. The grass on either side of the road is vibrant and well-maintained, with some patches of darker green. The camera follows the car as it navigates the curves, providing a clear view of the vehicle's movement and the surrounding environment. The overall scene is serene and picturesque, with the car being the main focus as it travels through the greenery.",
+      "x_fov": 1.4322851088389426,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/istock-country-road/crane_up_fwd.npy",
+          "gallery_entry": "aerial-view-electric-car-driving-on-country-road-gm541931272-98295151_part1_d2ab3cab2d_0-289__crane_up_fwd_page_pip",
+          "pose_sha256": "d08cf42b76b0292134389b3110650a2a2d8fb5c0d412b9ab1142037ead812da9"
+        },
+        {
+          "id": "dolly_in",
+          "pose": "poses/istock-country-road/dolly_in.npy",
+          "gallery_entry": "aerial-view-electric-car-driving-on-country-road-gm541931272-98295151_part1_d2ab3cab2d_0-289__dolly_in_page_pip",
+          "pose_sha256": "8324284c5cea2b2e24004c3841a1626bc0c6876aca402f646a0eba75f1b349fe"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/istock-country-road/orbit_left.npy",
+          "gallery_entry": "aerial-view-electric-car-driving-on-country-road-gm541931272-98295151_part1_d2ab3cab2d_0-289__orbit_left_page_pip",
+          "pose_sha256": "3a7852f00cc779e7234bcbc228f29d652f9a2c0bc7320df5c9e87b6849ac7c36"
+        },
+        {
+          "id": "truck_left",
+          "pose": "poses/istock-country-road/truck_left.npy",
+          "gallery_entry": "aerial-view-electric-car-driving-on-country-road-gm541931272-98295151_part1_d2ab3cab2d_0-289__truck_left_page_pip",
+          "pose_sha256": "63b58a23d151f3814a4de6505c3b4b09574c59cb96336e2274d7561ac405038d"
+        }
+      ],
+      "first_frame_sha256": "5374b50516c109e23ca7b87c8d741333ed1187168558e4f08b7172d9037f48c4",
+      "provenance": {
+        "first_frame": "First decoded frame of the iStock gallery sample identified by source_id=aerial-view-electric-car-driving-on-country-road-gm541931272-98295151_part1_d2ab3cab2d_0-289",
+        "caption": "prompt_raw from the camera metadata of the same sample",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov derived from valid intrinsics of the same sample"
+      }
+    },
+    {
+      "id": "panshot-car-show",
+      "category": "PanShot",
+      "source_id": "dCzqGcss9x8-4-0-linear_aug_0-fov90-xi0.00",
+      "first_frame": "assets/panshot-car-show/first_frame.png",
+      "caption": "The video showcases a vibrant outdoor car show under a clear blue sky, with a variety of vintage Volkswagen vehicles on display. The camera pans across the scene, focusing on a classic green Volkswagen van parked prominently in the foreground. This iconic vehicle is detailed with its rounded front, chrome accents, and the iconic \"VW\" emblem on the side. As the camera moves, it reveals more of the event, featuring other colorful vintage cars, including a bright orange one and a blue one, all neatly lined up on a grassy field. The background is filled with people walking around, admiring the cars, and enjoying the sunny day. Trees and tents are visible, adding to the lively atmosphere of the gathering. The overall ambiance suggests a celebration of automotive history and culture.",
+      "x_fov": 1.5707963267948966,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "dolly_in",
+          "pose": "poses/panshot-car-show/dolly_in.npy",
+          "gallery_entry": "dCzqGcss9x8-4-0-linear_aug_0-fov90-xi0.00__dolly_in_page_pip",
+          "pose_sha256": "595fb4931e5776ce3dbdf005a49147d4bb44464709b8ad73e0e8ccdfccb15a32"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/panshot-car-show/dolly_out.npy",
+          "gallery_entry": "dCzqGcss9x8-4-0-linear_aug_0-fov90-xi0.00__dolly_out_page_pip",
+          "pose_sha256": "eb1dc5d276573efadd46da80645eefa7dc05c6e10fd9ae3a1577b581be458360"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/panshot-car-show/orbit_left.npy",
+          "gallery_entry": "dCzqGcss9x8-4-0-linear_aug_0-fov90-xi0.00__orbit_left_page_pip",
+          "pose_sha256": "4f90138843a1e1c1a8e2e48487b5faca2b0475b91370fd0f41aebc57d0259279"
+        },
+        {
+          "id": "real_rot_aug_0-fov110-xi0.00",
+          "pose": "poses/panshot-car-show/real_rot_aug_0-fov110-xi0.00.npy",
+          "gallery_entry": "dCzqGcss9x8-4-0-linear_aug_0-fov90-xi0.00__real_rot_aug_0-fov110-xi0.00_page_pip",
+          "pose_sha256": "91fc6e5191f621eea82d0595ea04be2035a00ec4b88370ec993eb62b436576c5"
+        }
+      ],
+      "first_frame_sha256": "6b4b873bd5dfdae01b47e5adbf842c60364affc15de88349f6c1ae0899837e37",
+      "provenance": {
+        "first_frame": "First decoded frame of the PanShot gallery sample identified by source_id=dCzqGcss9x8-4-0-linear_aug_0-fov90-xi0.00",
+        "caption": "Caption from the matching PanShot index entry",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov and xi parsed from the same indexed sample"
+      }
+    },
+    {
+      "id": "panshot-suburb",
+      "category": "PanShot",
+      "source_id": "HTdKkiu771g-3-0-yaw_aug_0-fov103-xi0.00",
+      "first_frame": "assets/panshot-suburb/first_frame.png",
+      "caption": "The video showcases a serene suburban neighborhood bathed in the warm glow of a bright, sunny day. The camera moves steadily forward along a quiet street lined with well-maintained houses. Each house is painted in soft pastel colors, with white being a prominent feature, complemented by green shutters and trim. The lawns are lush and green, indicating that it's likely spring or summer.\n\nAs the camera progresses, the trees on either side of the street come into view, their leaves a vibrant mix of fresh greens and hints of red, suggesting early blooming flowers. The sky above is clear and blue, with the sun shining brightly, casting long shadows across the road. Power lines run parallel to the street, adding a subtle urban touch to the otherwise tranquil setting.\n\nThe street itself is clean and smooth, with a few parked cars visible along the curb. The overall atmosphere is peaceful and inviting, capturing the essence of a typical day in a residential area where life seems to move at a relaxed pace.",
+      "x_fov": 1.7976891295541595,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "crane_up_fwd",
+          "pose": "poses/panshot-suburb/crane_up_fwd.npy",
+          "gallery_entry": "HTdKkiu771g-3-0-yaw_aug_0-fov103-xi0.00__crane_up_fwd_page_pip",
+          "pose_sha256": "02b42402c842fa602349a1afacba76a6c45b04e3ab36f7a4f939adaed2dac8fb"
+        },
+        {
+          "id": "dolly_out",
+          "pose": "poses/panshot-suburb/dolly_out.npy",
+          "gallery_entry": "HTdKkiu771g-3-0-yaw_aug_0-fov103-xi0.00__dolly_out_page_pip",
+          "pose_sha256": "11bbc17de1a4828ff5db77187fd3e6082b056ec7b7fdbf71f854a415cf8fe047"
+        },
+        {
+          "id": "real_3MxSs-22-0-no_rot_aug_0-fov92-xi0.00",
+          "pose": "poses/panshot-suburb/real_3MxSs-22-0-no_rot_aug_0-fov92-xi0.00.npy",
+          "gallery_entry": "HTdKkiu771g-3-0-yaw_aug_0-fov103-xi0.00__real_3MxSs-22-0-no_rot_aug_0-fov92-xi0.00_page_pip",
+          "pose_sha256": "6c315fedcd2c2eddd95505f34809e15e0230e0c4e57e6139b11c6dfbfd85e51c"
+        },
+        {
+          "id": "truck_right",
+          "pose": "poses/panshot-suburb/truck_right.npy",
+          "gallery_entry": "HTdKkiu771g-3-0-yaw_aug_0-fov103-xi0.00__truck_right_page_pip",
+          "pose_sha256": "01bc2510c7aacccf7cb88e4b277a0f16282c6b468514e2655e60b33bc65be8b3"
+        }
+      ],
+      "first_frame_sha256": "5619ca40c72ec18b67dcd99f3d116d77778b720b6b8d5a451353692ca0170c24",
+      "provenance": {
+        "first_frame": "First decoded frame of the PanShot gallery sample identified by source_id=HTdKkiu771g-3-0-yaw_aug_0-fov103-xi0.00",
+        "caption": "Caption from the matching PanShot index entry",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov and xi parsed from the same indexed sample"
+      }
+    },
+    {
+      "id": "panshot-play-area",
+      "category": "PanShot",
+      "source_id": "SRW7-kmdVhQ-40-1-yaw_pitch_aug_0-fov105-xi0.00",
+      "first_frame": "assets/panshot-play-area/first_frame.png",
+      "caption": "The video features an indoor play area with vibrant colors and various play structures. The setting is lively, with bright yellow walls and colorful padded flooring that includes sections resembling a race track. The ceiling has exposed beams and circular light fixtures, adding to the industrial yet playful atmosphere.\n\nIn the foreground, a person wearing a gray t-shirt with \"Manila Philippines\" printed on it and a blue cap is seen walking through the play area. They appear to be casually exploring or observing their surroundings. The background shows other children engaged in play, some sitting at tables, while others are actively moving around the colorful play structures. A Christmas tree is visible in the distance, suggesting the video was taken during the holiday season. The overall environment is well-lit, creating a cheerful and inviting space for families and children.",
+      "x_fov": 1.8325957145940461,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "dolly_in",
+          "pose": "poses/panshot-play-area/dolly_in.npy",
+          "gallery_entry": "SRW7-kmdVhQ-40-1-yaw_pitch_aug_0-fov105-xi0.00__dolly_in_page_pip",
+          "pose_sha256": "0bac356911612c23840aeba9344f300ab4cd5ec846b769b044344f5cb0392624"
+        },
+        {
+          "id": "orbit_left",
+          "pose": "poses/panshot-play-area/orbit_left.npy",
+          "gallery_entry": "SRW7-kmdVhQ-40-1-yaw_pitch_aug_0-fov105-xi0.00__orbit_left_page_pip",
+          "pose_sha256": "f9bf396f78dce5a9af75918ecec1d462fe6699766826c506b3e57407fffe4ed1"
+        },
+        {
+          "id": "pan_right",
+          "pose": "poses/panshot-play-area/pan_right.npy",
+          "gallery_entry": "SRW7-kmdVhQ-40-1-yaw_pitch_aug_0-fov105-xi0.00__pan_right_page_pip",
+          "pose_sha256": "8d458553c83b576a5e025ae2a9c861e0a367de44291a2ab7616eeb01ad4d62d6"
+        },
+        {
+          "id": "real_aug_0-fov93-xi0.00",
+          "pose": "poses/panshot-play-area/real_aug_0-fov93-xi0.00.npy",
+          "gallery_entry": "SRW7-kmdVhQ-40-1-yaw_pitch_aug_0-fov105-xi0.00__real_aug_0-fov93-xi0.00_page_pip",
+          "pose_sha256": "3fbba6fec2c35f581b679be85ecb578740bfeb99756d1d26d97389d220b6b1bc"
+        }
+      ],
+      "first_frame_sha256": "24254428d2ab360d32e46939e9d3ce7d78103bdcf8335807c79d042b886da465",
+      "provenance": {
+        "first_frame": "First decoded frame of the PanShot gallery sample identified by source_id=SRW7-kmdVhQ-40-1-yaw_pitch_aug_0-fov105-xi0.00",
+        "caption": "Caption from the matching PanShot index entry",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov and xi parsed from the same indexed sample"
+      }
+    },
+    {
+      "id": "panshot-exhibition",
+      "category": "PanShot",
+      "source_id": "ZcKpwAVuAaA-4-0-yaw_aug_0-fov93-xi0.00",
+      "first_frame": "assets/panshot-exhibition/first_frame.png",
+      "caption": "The video showcases a bustling exhibition hall, likely during a trade show or expo. The setting is indoors with bright lighting and a modern design. The camera pans across the scene, revealing various booths and displays. In the foreground, there's a booth with a sign that reads \"DIOCIAN\" and features a banner with text promoting their products. Several people are seen interacting with the booth staff, who are dressed in blue uniforms and wearing lanyards, suggesting they are representatives of the company.\n\nThe environment is lively, with attendees walking around, examining products, and engaging with exhibitors. Balloons are scattered throughout the area, adding a festive touch to the atmosphere. In the background, another booth labeled \"E12-2\" is visible, with a screen displaying content. The overall ambiance suggests a professional yet dynamic event where new technologies and innovations are being showcased.",
+      "x_fov": 1.6231562043547265,
+      "xi": 0.0,
+      "trajectories": [
+        {
+          "id": "dolly_in",
+          "pose": "poses/panshot-exhibition/dolly_in.npy",
+          "gallery_entry": "ZcKpwAVuAaA-4-0-yaw_aug_0-fov93-xi0.00__dolly_in_page_pip",
+          "pose_sha256": "f8848b804c661152d82a544e46ccb8a6803eacfd23dbee2691bd810b8c6b4b79"
+        },
+        {
+          "id": "real_gt",
+          "pose": "poses/panshot-exhibition/real_gt.npy",
+          "gallery_entry": "ZcKpwAVuAaA-4-0-yaw_aug_0-fov93-xi0.00__real_gt_page_pip",
+          "pose_sha256": "495cdc33e9175b77eb42ba4a66f92c8f4e54452c54cc0e1bcd4d73c593270298"
+        },
+        {
+          "id": "real_pitch_aug_0-fov100-xi0.00",
+          "pose": "poses/panshot-exhibition/real_pitch_aug_0-fov100-xi0.00.npy",
+          "gallery_entry": "ZcKpwAVuAaA-4-0-yaw_aug_0-fov93-xi0.00__real_pitch_aug_0-fov100-xi0.00_page_pip",
+          "pose_sha256": "4fc8bd9cd0d8876387af8ad4d33edc507a8bf41d48fa7480a75649c6b6d304c3"
+        },
+        {
+          "id": "snake_fwd",
+          "pose": "poses/panshot-exhibition/snake_fwd.npy",
+          "gallery_entry": "ZcKpwAVuAaA-4-0-yaw_aug_0-fov93-xi0.00__snake_fwd_page_pip",
+          "pose_sha256": "36c5e1212d2e9af04ec6028a7fb0bccfb2b3b8a5fa341e505390a0bcebdb0291"
+        }
+      ],
+      "first_frame_sha256": "4ea204d33cfa68c28e2039ae320fa6c18d28d4e9eb432e491ed83838b90dc909",
+      "provenance": {
+        "first_frame": "First decoded frame of the PanShot gallery sample identified by source_id=ZcKpwAVuAaA-4-0-yaw_aug_0-fov93-xi0.00",
+        "caption": "Caption from the matching PanShot index entry",
+        "pose": "Gallery pose matched by exact source_id/gallery_entry; x_fov and xi parsed from the same indexed sample"
+      }
+    }
+  ],
+  "source_notes": {
+    "matching": "Each case joins first frame, caption, intrinsics, and poses by the exact source_id; gallery-derived trajectories additionally retain gallery_entry.",
+    "coordinate_convention": "Pose arrays are OpenCV camera-to-world matrices; x_fov is horizontal field of view in radians.",
+    "release_scope": "These are conditioning inputs selected from the project gallery, not generated outputs."
+  }
+}

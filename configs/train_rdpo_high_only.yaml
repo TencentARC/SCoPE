@@ -1,0 +1,56 @@
+# SCoPE RDPO high-only training recipe.
+#
+# Only the high-noise expert is optimized and timesteps are sampled from
+# [0.9, 1.0). The mixture concatenates four native loaders; every dataset uses
+# the same camera convention: first-camera-relative OpenCV c2w poses and
+# translation preprocessed by trajectory_scale / near_depth. near_depth (from
+# scripts/estimate_near_depth.py) is only a near-distance depth normalization
+# that makes translation magnitude comparable across datasets; scale itself is
+# handled by the model's scale gate, so trajectory_scale stays 1.0.
+#
+# Replace the data_root / index_path / near_depth_json placeholders with your
+# local dataset paths.
+
+model_path: TencentARC/SCoPE
+output_dir: outputs/training
+seed: 42
+
+trainer:
+  num_gpus: 8
+  max_steps: 10000
+  save_every_n_steps: 1000
+  precision: bf16-mixed
+  gradient_clip_val: 1.0
+  log_every_n_steps: 10
+
+optimizer:
+  learning_rate: 2.0e-5
+  weight_decay: 1.0e-2
+
+data:
+  num_frames: 81
+  height: 480
+  width: 832
+  trajectory_scale: 1.0
+  num_workers: 4
+  datasets:
+    # RealEstate10K is high-frame-rate, so a random stride in [1, sample_stride]
+    # augments the motion-magnitude distribution.
+    - name: realestate10k
+      data_root: /path/to/RealEstate10K
+      split: train
+      sample_stride: 4
+      near_depth_json: /path/to/RealEstate10K/near_depth_train.json
+    # DL3DV clips are pre-cut; a fixed stride of 1 keeps motion speed stable.
+    - name: dl3dv
+      data_root: /path/to/DL3DV
+      sample_stride: 1
+      near_depth_json: /path/to/DL3DV/near_depth.json
+    - name: panshot
+      data_root: /path/to/PanShot
+      split: train
+      near_depth_json: /path/to/PanShot/near_depth_train.json
+    - name: omniworld
+      data_root: /path/to/OmniWorld
+      index_path: /path/to/OmniWorld/valid_entries.json
+      near_depth_json: /path/to/OmniWorld/near_depth.json
