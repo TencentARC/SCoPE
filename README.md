@@ -10,7 +10,7 @@ Minghao Yin · Jiahao Lu · Wenbo Hu · Wang Zhao · Ying Shan · Kai Han
 [![Model](https://img.shields.io/badge/🤗%20Model-TencentARC%2FSCoPE-FFD21E)](https://huggingface.co/TencentARC/SCoPE)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE.txt)
 
-![SCoPE teaser](assets/teaser.jpg)
+![SCoPE teaser](assets/teaser.png)
 
 </div>
 
@@ -143,7 +143,7 @@ python inference.py \
 
 | Input first frame | Output (`truck_right`) |
 | :---: | :---: |
-| <img src="examples/assets/omni-misty-forest/first_frame.png" width="360"> | ![truck_right](assets/demo/forest_truck_right.gif) |
+| <img src="assets/demo/misty_first_frame.jpg" width="360"> | ![truck_right](assets/demo/forest_truck_right.gif) |
 
 The output is shown with the camera-control HUD overlay (see
 [Visualizing camera control](#visualizing-camera-control)); the bottom-right inset traces the
@@ -188,7 +188,7 @@ synthetic camera paths; **GT 1–3** are the scene's own recorded OmniWorld came
 | | | |
 | :---: | :---: | :---: |
 | **Input first frame** | **`truck_right`** | **`snake_fwd`** |
-| <img src="examples/assets/omni-misty-forest/first_frame.png" width="260"> | ![truck_right](assets/demo/forest_truck_right.gif) | ![snake_fwd](assets/demo/forest_snake_fwd.gif) |
+| <img src="assets/demo/misty_first_frame.jpg" width="260"> | ![truck_right](assets/demo/forest_truck_right.gif) | ![snake_fwd](assets/demo/forest_snake_fwd.gif) |
 | **GT 1** · `real_split0_000041` | **GT 2** · `real_split0_000081` | **GT 3** · `real_split0_000161` |
 | ![gt1](assets/demo/forest_gt1.gif) | ![gt2](assets/demo/forest_gt2.gif) | ![gt3](assets/demo/forest_gt3.gif) |
 

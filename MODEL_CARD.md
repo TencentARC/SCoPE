@@ -16,7 +16,7 @@ SCoPE generates camera-controlled videos from a first frame, a text prompt, and 
 trajectory. It represents each video token with both its spatial-temporal position and its camera
 sightline, enabling direct control over camera motion in Wan2.2-I2V-A14B.
 
-![SCoPE teaser](assets/teaser.jpg)
+![SCoPE teaser](assets/teaser.png)
 
 ## Download
 
