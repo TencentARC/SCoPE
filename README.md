@@ -10,7 +10,7 @@ Minghao Yin · Jiahao Lu · Wenbo Hu · Wang Zhao · Ying Shan · Kai Han
 [![Model](https://img.shields.io/badge/🤗%20Model-TencentARC%2FSCoPE-FFD21E)](https://huggingface.co/TencentARC/SCoPE)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE.txt)
 
-![SCoPE teaser](assets/teaser.png)
+![SCoPE teaser](assets/teaser.jpg)
 
 </div>
 
