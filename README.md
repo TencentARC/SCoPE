@@ -143,7 +143,7 @@ python inference.py \
 
 | Input first frame | Output (`truck_right`) |
 | :---: | :---: |
-| <img src="assets/demo/misty_first_frame.jpg" width="360"> | ![truck_right](assets/demo/forest_truck_right.gif) |
+| <img src="assets/demo/misty_first_frame.jpg" width="320"> | <img src="assets/demo/forest_truck_right.gif" width="320"> |
 
 The output is shown with the camera-control HUD overlay (see
 [Visualizing camera control](#visualizing-camera-control)); the bottom-right inset traces the
