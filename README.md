@@ -7,6 +7,7 @@ Minghao Yin · Jiahao Lu · Wenbo Hu · Wang Zhao · Ying Shan · Kai Han
 [![Project Page](https://img.shields.io/badge/Project%20Page-visual--ai.github.io%2Fscope-1E90FF)](https://visual-ai.github.io/scope/)
 [![arXiv](https://img.shields.io/badge/arXiv-2606.27345-B31B1B?logo=arxiv)](https://arxiv.org/abs/2606.27345)
 [![GitHub](https://img.shields.io/badge/GitHub-SCoPE-181717?logo=github)](https://github.com/TencentARC/SCoPE)
+[![Demo](https://img.shields.io/badge/🤗%20Demo-Spaces-FF9D00)](https://huggingface.co/spaces/TencentARC/scope-camera-video-generation)
 [![Model](https://img.shields.io/badge/🤗%20Model-TencentARC%2FSCoPE-FFD21E)](https://huggingface.co/TencentARC/SCoPE)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE.txt)
 
@@ -17,6 +18,9 @@ Minghao Yin · Jiahao Lu · Wenbo Hu · Wang Zhao · Ying Shan · Kai Han
 SCoPE adds camera sightlines as positional coordinates to a pretrained video diffusion
 transformer. Given a first frame, a text prompt, and a camera trajectory, it generates a video
 that follows the requested camera motion while preserving the original image-to-video prior.
+
+## 🚀 Try It Online
+Try SCoPE in your browser — no setup required: **[🤗 Hugging Face Space](https://huggingface.co/spaces/TencentARC/scope-camera-video-generation)**
 
 ## 📑 Table of Contents
 
