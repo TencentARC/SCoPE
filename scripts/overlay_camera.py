@@ -164,6 +164,24 @@ def _despike_keys(keys: list[set[str]]) -> list[set[str]]:
     return keys
 
 
+def assess_wasd(poses: np.ndarray, keys: list[set[str]]) -> tuple[bool, str]:
+    """Give a lightweight recommendation without changing the rendered HUD."""
+    world_steps = np.diff(poses[:, :, 3], axis=0)
+    steps = (poses[0, :3, :3].T @ world_steps.T).T
+    total_motion = float(np.linalg.norm(steps, axis=1).sum())
+    planar_motion = float(np.linalg.norm(steps[:, [0, 2]], axis=1).sum())
+    active_ratio = sum(bool(active) for active in keys) / max(len(keys), 1)
+
+    if total_motion < 1e-8:
+        return False, "no measurable camera translation"
+    planar_ratio = planar_motion / total_motion
+    if planar_ratio < 0.5:
+        return False, f"only {planar_ratio:.0%} of the motion is horizontal"
+    if active_ratio < 0.15:
+        return False, f"only {active_ratio:.0%} of frames map to an active key"
+    return True, f"horizontal motion {planar_ratio:.0%}, active keys {active_ratio:.0%}"
+
+
 def _resample(keys: list[set[str]], n: int) -> list[set[str]]:
     T = len(keys)
     if T == n:
@@ -534,6 +552,14 @@ def main() -> None:
         if args.pose:
             poses = _load_poses(Path(args.pose))
             keys = keys_per_frame_from_pose(poses)
+            wasd_ok, wasd_reason = assess_wasd(poses, keys)
+            if wasd_ok:
+                print(f"[overlay] WASD assessment: suitable ({wasd_reason})")
+            else:
+                print(
+                    f"[overlay] WASD assessment: not recommended ({wasd_reason}); "
+                    "consider --hide_wasd"
+                )
             camera_poses = poses
             src = f"pose={Path(args.pose).name}"
         else:

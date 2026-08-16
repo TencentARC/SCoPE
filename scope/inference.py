@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +13,11 @@ from PIL import Image
 
 from diffsynth import save_video
 from scope.config import SCOPE_MODEL_ID, InferenceConfig
+from scope.example_selection import (
+    choose_case_trajectory,
+    load_pose,
+    resolve_example_inputs,
+)
 from scope.pipeline import SCoPEPipeline
 from scope.weights import load_pipeline, resolve_model_dir
 
@@ -39,64 +44,6 @@ def _prepare_device(pipe: SCoPEPipeline, vram_limit_gb: float | None) -> torch.d
     return device
 
 
-def _select_example(
-    manifest_path: Path,
-    case_id: str | None,
-    trajectory_id: str | None,
-) -> dict[str, Any]:
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    cases = manifest["cases"]
-    case = next(
-        (item for item in cases if item["id"] == case_id),
-        cases[0] if case_id is None else None,
-    )
-    if case is None:
-        raise KeyError(f"Unknown case: {case_id}")
-    trajectories = case["trajectories"]
-    trajectory = next(
-        (item for item in trajectories if item["id"] == trajectory_id),
-        trajectories[0] if trajectory_id is None else None,
-    )
-    if trajectory is None:
-        raise KeyError(f"Unknown trajectory {trajectory_id!r} for case {case['id']!r}")
-    root = manifest_path.parent
-    return {
-        **case,
-        "first_frame": root / case["first_frame"],
-        "pose": root / trajectory["pose"],
-        "trajectory_id": trajectory["id"],
-    }
-
-
-def _custom_example(
-    input_image: Path | None,
-    prompt: str | None,
-    camera_path: Path | None,
-    x_fov: float | None,
-    xi: float,
-) -> dict[str, Any] | None:
-    values = {
-        "input_image": input_image,
-        "prompt": prompt,
-        "camera_path": camera_path,
-        "x_fov": x_fov,
-    }
-    if not any(value is not None for value in values.values()):
-        return None
-    missing = [name for name, value in values.items() if value is None]
-    if missing:
-        raise ValueError(f"Custom inference requires: {', '.join(missing)}")
-    return {
-        "id": "custom",
-        "first_frame": input_image,
-        "caption": prompt,
-        "pose": camera_path,
-        "x_fov": x_fov,
-        "xi": xi,
-        "trajectory_id": camera_path.stem,
-    }
-
-
 @torch.inference_mode()
 def generate(
     pipe: SCoPEPipeline,
@@ -105,17 +52,12 @@ def generate(
     config: InferenceConfig,
     negative_prompt: str,
     device: torch.device,
+    pose: np.ndarray | None = None,
 ) -> None:
     image = Image.open(example["first_frame"]).convert("RGB")
     image = image.resize((config.width, config.height), Image.Resampling.LANCZOS)
-    pose = np.load(example["pose"], allow_pickle=False).astype(np.float32)
-    if (
-        pose.ndim != 3
-        or pose.shape[0] != config.num_frames
-        or pose.shape[1:] not in ((3, 4), (4, 4))
-    ):
-        raise ValueError(f"Expected pose [81,3,4] or [81,4,4], got {pose.shape}")
-    pose = pose[:, :3, :4]
+    if pose is None:
+        pose = load_pose(example["pose"], config.num_frames)
     camera = {
         "pose": torch.from_numpy(pose)[None].to(device=device, dtype=pipe.torch_dtype),
         "x_fov": torch.tensor([example["x_fov"]], device=device, dtype=pipe.torch_dtype),
@@ -154,7 +96,7 @@ def main() -> None:
     parser.add_argument("--prompt", default=None)
     parser.add_argument("--camera_path", type=Path, default=None)
     parser.add_argument("--x_fov", type=float, default=None)
-    parser.add_argument("--xi", type=float, default=0.0)
+    parser.add_argument("--xi", type=float, default=None)
     parser.add_argument(
         "--output_path",
         "--output",
@@ -178,23 +120,54 @@ def main() -> None:
     args = parser.parse_args()
 
     config = InferenceConfig(seed=args.seed)
-    example = _custom_example(
-        args.input_image,
-        args.prompt,
-        args.camera_path,
-        args.x_fov,
-        args.xi,
+    interactive_case = (
+        args.case is not None
+        and args.trajectory is None
+        and args.camera_path is None
+        and args.input_image is None
+        and args.prompt is None
+        and args.x_fov is None
+        and args.xi is None
     )
-    if example is None:
-        example = _select_example(args.manifest, args.case, args.trajectory)
-    elif args.case is not None or args.trajectory is not None:
-        parser.error("Use either a manifest case or custom inputs, not both")
+    if interactive_case:
+        if not sys.stdin.isatty():
+            parser.error(
+                "--case without --trajectory requires an interactive terminal; "
+                "pass --trajectory when running non-interactively"
+            )
+        try:
+            args.trajectory = choose_case_trajectory(args.manifest, args.case)
+        except (EOFError, KeyboardInterrupt):
+            parser.error("Trajectory selection cancelled")
+        except (KeyError, ValueError) as error:
+            parser.error(str(error))
+
+    try:
+        example = resolve_example_inputs(
+            args.manifest,
+            args.case,
+            args.trajectory,
+            args.input_image,
+            args.prompt,
+            args.camera_path,
+            args.x_fov,
+            args.xi,
+        )
+    except (KeyError, ValueError) as error:
+        parser.error(str(error))
+    if args.case is not None and args.camera_path is not None:
+        print(f"Using case {args.case!r} with external pose {args.camera_path}")
+    try:
+        pose = load_pose(example["pose"], config.num_frames)
+    except (OSError, ValueError) as error:
+        parser.error(str(error))
+    print(f"Validated pose {example['pose']} with shape {pose.shape}.")
     model_dir = resolve_model_dir(args.model_path, args.cache_dir)
     pipe = load_pipeline(model_dir, config)
     print("Loaded SCoPE.")
     device = _prepare_device(pipe, args.vram_limit_gb)
     negative_prompt = args.negative_prompt.read_text(encoding="utf-8").strip()
-    generate(pipe, example, args.output_path, config, negative_prompt, device)
+    generate(pipe, example, args.output_path, config, negative_prompt, device, pose=pose)
     print(f"Saved {args.output_path}")
 
 

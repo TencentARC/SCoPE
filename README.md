@@ -11,7 +11,9 @@ Minghao Yin · Jiahao Lu · Wenbo Hu · Wang Zhao · Ying Shan · Kai Han
 [![Model](https://img.shields.io/badge/🤗%20Model-TencentARC%2FSCoPE-FFD21E)](https://huggingface.co/TencentARC/SCoPE)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE.txt)
 
-![SCoPE teaser](assets/teaser.png)
+<img src="assets/teaser_part1.jpg" alt="SCoPE method overview" width="864">
+
+<img src="assets/teaser_grid.gif" alt="Six camera-controlled SCoPE video results in a 3-by-2 grid" width="864">
 
 </div>
 
@@ -29,9 +31,11 @@ Try SCoPE in your browser — no setup required: **[🤗 Hugging Face Space](htt
 - [Installation](#installation)
 - [Model download](#model-download)
 - [Inference](#inference)
-  - [Quick start — one trajectory](#quick-start--one-trajectory)
-  - [Custom image and trajectory](#custom-image-and-trajectory)
+  - [Quick start — choose a trajectory](#quick-start--choose-a-trajectory)
+  - [Specify a trajectory directly](#specify-a-trajectory-directly)
   - [All trajectories for one scene](#all-trajectories-for-one-scene)
+  - [Existing case with an external trajectory](#existing-case-with-an-external-trajectory)
+  - [Custom image and trajectory](#custom-image-and-trajectory)
   - [Visualizing camera control](#visualizing-camera-control)
   - [Inference options](#inference-options)
 - [Training](#training)
@@ -66,7 +70,7 @@ In practice this means:
 
 | Path | Description |
 | --- | --- |
-| `inference.py` | Inference entry: single, custom, or all-trajectory generation. |
+| `inference.py` | Inference entry: manifest, case + external pose, custom, or all-trajectory generation. |
 | `train.py` | Training entry for the RDPO high-only recipe. |
 | `scope/encoding.py` | Sightline-Coordinate positional encoding (Normalize-Gate-Inject). |
 | `scope/geometry.py` | Camera-ray and Plücker-coordinate utilities. |
@@ -132,10 +136,47 @@ All inference is driven by `inference.py`. The repository ships example first fr
 camera trajectories under `examples/`, so every command below runs out of the box. See
 [Inference options](#inference-options) for the full flag list.
 
-### Quick start — one trajectory
+### Quick start — choose a trajectory
 
-**Input:** one first frame + one camera trajectory (+ the scene prompt).
-**Output:** one 81-frame video that follows the trajectory (480 × 832, seed 42).
+**Input:** one bundled case.
+
+**Output:** one 81-frame video using the camera trajectory selected in the terminal
+(480 × 832, seed 42).
+
+Pass a case without `--trajectory` to see its available camera poses and choose one by number or
+trajectory id:
+
+```bash
+python inference.py \
+  --model_path checkpoints/SCoPE \
+  --case omni-misty-forest \
+  --output_path outputs/omni-misty-forest__truck_right.mp4
+```
+
+The terminal will prompt before loading the model:
+
+```text
+Available trajectories for 'omni-misty-forest':
+  [1] real_split0_000041  (poses/omni-misty-forest/real_split0_000041.npy)
+  [2] real_split0_000081  (poses/omni-misty-forest/real_split0_000081.npy)
+  [3] real_split0_000161  (poses/omni-misty-forest/real_split0_000161.npy)
+  [4] snake_fwd  (poses/omni-misty-forest/snake_fwd.npy)
+  [5] truck_right  (poses/omni-misty-forest/truck_right.npy)
+Select a trajectory [1-5] or enter its id: 5
+```
+
+| Input first frame | Output (`truck_right`) |
+| :---: | :---: |
+| <img src="assets/demo/misty_first_frame.jpg" width="320"> | <img src="assets/demo/forest_truck_right.gif" width="320"> |
+
+The output is shown with the camera-control HUD overlay (see
+[Visualizing camera control](#visualizing-camera-control)); the bottom-right inset traces the
+driving camera path.
+
+### Specify a trajectory directly
+
+This is the non-interactive form of the same bundled-case inference. Pass the trajectory id
+directly for scripts, cluster jobs, and exactly reproducible commands:
 
 ```bash
 python inference.py \
@@ -145,32 +186,8 @@ python inference.py \
   --output_path outputs/omni-misty-forest__truck_right.mp4
 ```
 
-| Input first frame | Output (`truck_right`) |
-| :---: | :---: |
-| <img src="assets/demo/misty_first_frame.jpg" width="320"> | <img src="assets/demo/forest_truck_right.gif" width="320"> |
-
-The output is shown with the camera-control HUD overlay (see
-[Visualizing camera control](#visualizing-camera-control)); the bottom-right inset traces the
-driving camera path. `bash scripts/inference.sh` wraps this command.
-
-### Custom image and trajectory
-
-**Input:** your own first frame, prompt, OpenCV camera-to-world poses, and horizontal FOV.
-**Output:** one video following your trajectory.
-
-```bash
-python inference.py \
-  --model_path checkpoints/SCoPE \
-  --input_image path/to/first_frame.png \
-  --prompt "A person walks along a misty forest trail." \
-  --camera_path path/to/camera_poses.npy \
-  --x_fov 1.11847 \
-  --output_path outputs/custom.mp4
-```
-
-`camera_poses.npy` must have shape `[81, 3, 4]` or `[81, 4, 4]` and use OpenCV camera-to-world
-coordinates. `x_fov` is the horizontal field of view in radians. Pinhole cameras use the default
-`xi=0`; unified camera models can set `--xi` explicitly.
+`bash scripts/inference.sh` wraps this explicit form. It generates the same result as choosing
+`truck_right` in the Quick Start selector.
 
 ### All trajectories for one scene
 
@@ -198,6 +215,43 @@ synthetic camera paths; **GT 1–3** are the scene's own recorded OmniWorld came
 
 Existing MP4 files are skipped, so interrupted runs can be resumed with the same command.
 
+### Existing case with an external trajectory
+
+Use a bundled case's first frame, prompt, `x_fov`, and `xi`, but drive it with any compatible
+local pose file. This avoids copying case metadata or searching for a matching pose directory.
+
+```bash
+python inference.py \
+  --model_path checkpoints/SCoPE \
+  --case omni-misty-forest \
+  --camera_path path/to/external_camera_poses.npy \
+  --output_path outputs/omni-misty-forest__external.mp4
+```
+
+The pose must still use the same `[81,3,4]` or `[81,4,4]` OpenCV camera-to-world convention.
+SCoPE validates its shape and finite values before loading model weights. Use `--x_fov` or `--xi`
+only when the external camera requires values different from the selected case. `--trajectory`
+and `--camera_path` are alternative pose sources and cannot be used together.
+
+### Custom image and trajectory
+
+**Input:** your own first frame, prompt, OpenCV camera-to-world poses, and horizontal FOV.
+**Output:** one video following your trajectory.
+
+```bash
+python inference.py \
+  --model_path checkpoints/SCoPE \
+  --input_image path/to/first_frame.png \
+  --prompt "A person walks along a misty forest trail." \
+  --camera_path path/to/camera_poses.npy \
+  --x_fov 1.11847 \
+  --output_path outputs/custom.mp4
+```
+
+`camera_poses.npy` must have shape `[81, 3, 4]` or `[81, 4, 4]` and use OpenCV camera-to-world
+coordinates. `x_fov` is the horizontal field of view in radians. Pinhole cameras use the default
+`xi=0`; unified camera models can set `--xi` explicitly.
+
 ### Visualizing camera control
 
 **Input:** a generated video + the camera trajectory used to produce it.
@@ -205,7 +259,10 @@ Existing MP4 files are skipped, so interrupted runs can be resumed with the same
 
 `scripts/overlay_camera.py` derives the overlay from the pose: it renders the accumulated camera
 frustum in the bottom-right corner and, for keyboard-style trajectories, the active WASD keys in
-the bottom-left corner. Every demo video in this README was produced with this tool.
+the bottom-left corner. At runtime it also prints a lightweight WASD assessment; when horizontal
+motion is too small or too few frames map to an active key, it recommends `--hide_wasd`. The
+assessment is advisory and does not change the output automatically. Every demo video in this
+README was produced with this tool.
 
 ```bash
 # Camera-frustum HUD only (recommended for scenic / dolly / orbit motions):
@@ -225,14 +282,14 @@ Requires the `viz` extra (`pip install -e .[viz]`) and `ffmpeg` on `PATH`.
 | --- | --- | --- |
 | `--model_path` | `TencentARC/SCoPE` | Local path or Hugging Face id of the SCoPE model. |
 | `--manifest` | `examples/manifest.json` | Example manifest for `--case` / `--trajectory`. |
-| `--case` | first case | Example case id to generate. |
-| `--trajectory` | first trajectory | Trajectory id within the case. |
+| `--case` | first case | Example case id; when supplied alone, choose its trajectory interactively. |
+| `--trajectory` | – | Optional bundled trajectory id; bypasses the interactive selector and is required for non-interactive jobs using `--case`. |
 | `--all_trajectories` | off | Generate every trajectory of `--case` (uses `--output_dir`). |
 | `--input_image` | – | Custom first frame (with `--prompt`, `--camera_path`, `--x_fov`). |
 | `--prompt` | – | Custom text prompt. |
-| `--camera_path` | – | Custom pose `.npy`, `[81,3,4]`/`[81,4,4]` OpenCV c2w. |
-| `--x_fov` | – | Horizontal field of view in radians (custom inputs). |
-| `--xi` | `0.0` | Unified-camera distortion parameter. |
+| `--camera_path` | – | External pose `.npy`; use with `--case` or all custom-input flags. |
+| `--x_fov` | case value / required for custom | Horizontal field of view in radians. |
+| `--xi` | case value / `0.0` for custom | Unified-camera distortion parameter. |
 | `--output_path` | `outputs/sample.mp4` | Output file for a single generation. |
 | `--output_dir` | `outputs` | Output directory for `--all_trajectories`. |
 | `--overwrite` | off | Regenerate existing outputs (`--all_trajectories`). |
