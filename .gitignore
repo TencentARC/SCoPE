@@ -6,7 +6,7 @@ __pycache__/
 .venv/
 build/
 dist/
-models/
+/models/
 outputs/
 *.mp4
 *.distcp
