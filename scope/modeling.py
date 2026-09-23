@@ -33,6 +33,7 @@ class SelfAttentionWithSCoPE(SelfAttention):
         scale_gate_hidden: int = 0,
         log_scale_aug_prob: float = 0.0,
         log_scale_aug_range: tuple = (-1.2, 1.6),
+        plucker_eps: float = 1e-6,
     ):
         super().__init__(dim, num_heads, eps)
         self.disable_spatial_rope = disable_spatial_rope
@@ -47,6 +48,7 @@ class SelfAttentionWithSCoPE(SelfAttention):
             scale_gate_hidden=scale_gate_hidden,
             log_scale_aug_prob=log_scale_aug_prob,
             log_scale_aug_range=log_scale_aug_range,
+            plucker_eps=plucker_eps,
         )
 
     def _mask_spatial_rope(self, freqs: torch.Tensor) -> torch.Tensor:

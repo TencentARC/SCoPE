@@ -30,3 +30,4 @@ class ArchitectureConfig:
     scale_gate_hidden: int = 0
     use_camera_residual: bool = False
     normalize_moment: bool = False
+    plucker_eps: float = 1e-6

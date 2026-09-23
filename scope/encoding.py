@@ -80,12 +80,14 @@ class SightlineCoordinatePE(nn.Module):
         scale_gate_hidden: int = 0,
         log_scale_aug_prob: float = 0.0,
         log_scale_aug_range: tuple = (-1.2, 1.6),
+        plucker_eps: float = 1e-6,
     ):
         super().__init__()
         self.dim = dim
         self.use_mlp = plucker_mlp_hidden > 0
         self.use_scale = plucker_scale > 0
         self.enable_cam_residual = enable_cam_residual
+        self.plucker_eps = float(plucker_eps)
         self.log_scale_aug_prob = float(log_scale_aug_prob)
         self.log_scale_aug_range = (float(log_scale_aug_range[0]), float(log_scale_aug_range[1]))
 
@@ -214,9 +216,13 @@ class SightlineCoordinatePE(nn.Module):
     # Plücker decomposition
     # ─────────────────────────────────────────────────────────────────────
 
-    @staticmethod
-    def decompose_plucker(plucker_6d: torch.Tensor):
+    def decompose_plucker(self, plucker_6d: torch.Tensor):
         """Decompose (d, m) → (d, m̂, log‖m‖).
+
+        ``self.plucker_eps`` lower-bounds ‖m‖ before the log. Pure-rotation and
+        frame-0 rays have m≈0, so this clamp sets their log-scale floor; it must
+        match the value used at training time (released 32k = 1e-6, tied-init =
+        1e-2) or camera conditioning shifts on those frames.
 
         Returns:
             feat_q: (B, S, 7) = (d, m̂, log_s) for Q projection.
@@ -226,7 +232,7 @@ class SightlineCoordinatePE(nn.Module):
         d = plucker_6d[..., :3]
         m = plucker_6d[..., 3:]
 
-        m_norm = m.norm(dim=-1, keepdim=True).clamp(min=1e-6)
+        m_norm = m.norm(dim=-1, keepdim=True).clamp(min=self.plucker_eps)
         m_hat = m / m_norm
         log_scale = torch.log(m_norm)
 

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import dataclasses
 import json
 from pathlib import Path
 from typing import Any
@@ -95,8 +96,28 @@ def _load_complete_component(model: torch.nn.Module, component_dir: Path) -> Non
         raise RuntimeError(f"Unmaterialized parameters: {meta_parameters[:5]}")
 
 
-def _install_scope_architecture(pipe: SCoPEPipeline, config: InferenceConfig) -> None:
+def _read_architecture(model_dir: Path) -> ArchitectureConfig:
+    """Build the architecture config, overriding plucker_eps from model_index.json.
+
+    Older bundles omit ``plucker_eps`` in ``scope_architecture`` and therefore
+    fall back to the 1e-6 default of the released 32k model. The tied-init bundle
+    writes ``plucker_eps: 0.01`` so its clamp matches training. Every other
+    architecture field is fixed by the released recipe and stays at its default.
+    """
     arch = ArchitectureConfig()
+    index_path = model_dir / "model_index.json"
+    if not index_path.is_file():
+        return arch
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    scope_arch = index.get("scope_architecture")
+    if isinstance(scope_arch, dict) and "plucker_eps" in scope_arch:
+        arch = dataclasses.replace(arch, plucker_eps=float(scope_arch["plucker_eps"]))
+    return arch
+
+
+def _install_scope_architecture(
+    pipe: SCoPEPipeline, config: InferenceConfig, arch: ArchitectureConfig
+) -> None:
     patch_scope(
         pipe,
         method="scope",
@@ -109,6 +130,7 @@ def _install_scope_architecture(pipe: SCoPEPipeline, config: InferenceConfig) ->
         gate_init_bias=arch.gate_init_bias,
         cam_residual_layers=[] if not arch.use_camera_residual else None,
         scale_gate_hidden=arch.scale_gate_hidden,
+        plucker_eps=arch.plucker_eps,
     )
     pipe.dit.plucker_normalize_moment = arch.normalize_moment
     pipe.dit2.plucker_normalize_moment = arch.normalize_moment
@@ -116,11 +138,12 @@ def _install_scope_architecture(pipe: SCoPEPipeline, config: InferenceConfig) ->
 
 def load_pipeline(model_dir: Path, config: InferenceConfig) -> SCoPEPipeline:
     """Load every inference component without consulting the Wan base repository."""
+    arch = _read_architecture(model_dir)
     pipe = SCoPEPipeline(device="cpu", torch_dtype=torch.bfloat16)
     with init_weights_on_device():
         pipe.dit = WanModel(**_DIT_CONFIG)
         pipe.dit2 = WanModel(**_DIT_CONFIG)
-        _install_scope_architecture(pipe, config)
+        _install_scope_architecture(pipe, config, arch)
 
     _load_complete_component(pipe.dit, model_dir / "high_noise_model")
     _load_complete_component(pipe.dit2, model_dir / "low_noise_model")

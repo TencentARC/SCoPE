@@ -21,6 +21,7 @@ def _patch_expert(
     scale_gate_hidden: int,
     log_scale_aug_prob: float,
     log_scale_aug_range: tuple,
+    plucker_eps: float,
     log_prefix: str = "[SCoPE]",
 ):
     """Replace self-attention in one DiT expert."""
@@ -40,7 +41,7 @@ def _patch_expert(
         f"plucker_mlp_hidden={plucker_mlp_hidden}, plucker_scale={plucker_scale}, "
         f"gate_init_bias={gate_init_bias}, scale_gate_hidden={scale_gate_hidden}, "
         f"log_scale_aug_prob={log_scale_aug_prob}, "
-        f"log_scale_aug_range={log_scale_aug_range}, "
+        f"log_scale_aug_range={log_scale_aug_range}, plucker_eps={plucker_eps}, "
         f"disable_spatial_rope={disable_spatial_rope}, "
         f"cam_residual_layers={layer_desc} ({len(cam_residual_set)}/{num_blocks} blocks)"
     )
@@ -63,6 +64,7 @@ def _patch_expert(
             scale_gate_hidden=scale_gate_hidden,
             log_scale_aug_prob=log_scale_aug_prob,
             log_scale_aug_range=log_scale_aug_range,
+            plucker_eps=plucker_eps,
         )
 
         if copy_self_attn_weights:
@@ -104,6 +106,7 @@ def patch_scope(
     scale_gate_hidden: int = 0,
     log_scale_aug_prob: float = 0.0,
     log_scale_aug_range: tuple = (-1.2, 1.6),
+    plucker_eps: float = 1e-6,
     **kwargs,
 ):
     """Patch the high- and low-noise experts and return trainable key patterns."""
@@ -125,6 +128,7 @@ def patch_scope(
         "scale_gate_hidden": scale_gate_hidden,
         "log_scale_aug_prob": log_scale_aug_prob,
         "log_scale_aug_range": log_scale_aug_range,
+        "plucker_eps": plucker_eps,
     }
     _patch_expert(pipe.dit, log_prefix="[SCoPE/dit]", **common_kwargs)
     _patch_expert(pipe.dit2, log_prefix="[SCoPE/dit2]", **common_kwargs)
