@@ -33,7 +33,7 @@ _LIST_KEYS = ("first_frame_pil",)
 def load_config(path: Path) -> dict[str, Any]:
     config = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     if not isinstance(config, dict):
-        raise ValueError(f"Training config must be a mapping: {path}")
+        raise TypeError(f"Training config must be a mapping: {path}")
     return config
 
 
@@ -52,10 +52,16 @@ class SCoPEFineTuner(pl.LightningModule):
         self,
         model_path: str,
         learning_rate: float,
+        lr_plucker: float,
+        lr_self_attn: float,
+        lr_ffn: float,
         weight_decay: float,
         height: int,
         width: int,
         num_frames: int,
+        plucker_eps: float,
+        log_scale_aug_prob: float,
+        log_scale_aug_range: tuple[float, float],
     ) -> None:
         super().__init__()
         self.save_hyperparameters()
@@ -71,6 +77,11 @@ class SCoPEFineTuner(pl.LightningModule):
         )
         model_dir = resolve_model_dir(self.hparams.model_path)
         self.pipe = load_pipeline(model_dir, inference_config)
+        for block in self.pipe.dit.blocks:
+            encoding = block.self_attn.plucker_pe
+            encoding.plucker_eps = self.hparams.plucker_eps
+            encoding.log_scale_aug_prob = self.hparams.log_scale_aug_prob
+            encoding.log_scale_aug_range = tuple(self.hparams.log_scale_aug_range)
         self.pipe.i2v_vae_condition_mode = "official_zero"
         enable_scope_grad(self.pipe, _TRAINABLE_KEYWORDS, expert="high_noise_model")
         object.__setattr__(self, "dit", self.pipe.dit)
@@ -132,15 +143,43 @@ class SCoPEFineTuner(pl.LightningModule):
         return loss
 
     def configure_optimizers(self) -> torch.optim.Optimizer:
-        parameters = [
-            parameter for parameter in self.pipe.dit.parameters() if parameter.requires_grad
-        ]
-        if not parameters:
+        grouped_parameters: dict[str, list[torch.nn.Parameter]] = {
+            "plucker_pe": [],
+            "self_attn": [],
+            "ffn_norm3": [],
+        }
+        for name, parameter in self.pipe.dit.named_parameters():
+            if not parameter.requires_grad:
+                continue
+            if "plucker_pe" in name:
+                grouped_parameters["plucker_pe"].append(parameter)
+            elif "self_attn" in name:
+                grouped_parameters["self_attn"].append(parameter)
+            elif "ffn" in name or "norm3" in name:
+                grouped_parameters["ffn_norm3"].append(parameter)
+            else:
+                raise RuntimeError(
+                    f"Trainable parameter is not assigned to an optimizer group: {name}"
+                )
+
+        if not any(grouped_parameters.values()):
             raise RuntimeError("No trainable parameters found in the high-noise expert")
+        learning_rates = {
+            "plucker_pe": self.hparams.lr_plucker,
+            "self_attn": self.hparams.lr_self_attn,
+            "ffn_norm3": self.hparams.lr_ffn,
+        }
+        parameter_groups = [
+            {"params": parameters, "lr": learning_rates[name], "name": name}
+            for name, parameters in grouped_parameters.items()
+            if parameters
+        ]
         return torch.optim.AdamW(
-            parameters,
+            parameter_groups,
             lr=self.hparams.learning_rate,
             weight_decay=self.hparams.weight_decay,
+            betas=(0.9, 0.999),
+            eps=1e-8,
         )
 
 
@@ -160,7 +199,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def build_strategy(num_gpus: int) -> "str | Any":
+def build_strategy(num_gpus: int) -> str | Any:
     if num_gpus <= 1:
         return "auto"
     from pytorch_lightning.strategies import FSDPStrategy
@@ -181,6 +220,7 @@ def main() -> None:
     config = load_config(args.config)
 
     data_config = config["data"]
+    model_config = config.get("model", {})
     trainer_config = config.get("trainer", {})
     optimizer_config = config.get("optimizer", {})
 
@@ -214,10 +254,16 @@ def main() -> None:
     model = SCoPEFineTuner(
         model_path=model_path,
         learning_rate=float(optimizer_config.get("learning_rate", 2e-5)),
+        lr_plucker=float(optimizer_config.get("lr_plucker", 2e-5)),
+        lr_self_attn=float(optimizer_config.get("lr_self_attn", 5e-6)),
+        lr_ffn=float(optimizer_config.get("lr_ffn", 2e-6)),
         weight_decay=float(optimizer_config.get("weight_decay", 1e-2)),
         height=int(data_config.get("height", 480)),
         width=int(data_config.get("width", 832)),
         num_frames=int(data_config.get("num_frames", 81)),
+        plucker_eps=float(model_config.get("plucker_eps", 1e-3)),
+        log_scale_aug_prob=float(model_config.get("log_scale_aug_prob", 0.3)),
+        log_scale_aug_range=tuple(model_config.get("log_scale_aug_range", (-1.2, 1.6))),
     )
     trainer = pl.Trainer(
         accelerator="gpu",

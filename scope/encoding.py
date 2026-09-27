@@ -59,6 +59,7 @@ class SightlineCoordinatePE(nn.Module):
             when enable_cam_residual=True).
         enable_cam_residual: whether to add frame-uniform gated camera residual.
         scale_gate_hidden: hidden dim of the scale gate MLP. Defaults to dim // 4.
+        tied_init: initialize E_k from E_q, then optimize them as independent modules.
         log_scale_aug_prob: probability of applying a uniform per-sample shift
             to the log_scale that feeds the scale_gate MLP during training.
             0.0 = disabled (backward compatible).  Only `scale_gate` input is
@@ -78,6 +79,7 @@ class SightlineCoordinatePE(nn.Module):
         gate_init_bias: float = -2.0,
         enable_cam_residual: bool = True,
         scale_gate_hidden: int = 0,
+        tied_init: bool = True,
         log_scale_aug_prob: float = 0.0,
         log_scale_aug_range: tuple = (-1.2, 1.6),
         plucker_eps: float = 1e-6,
@@ -151,6 +153,8 @@ class SightlineCoordinatePE(nn.Module):
             self.gate_logit = nn.Parameter(torch.full((dim,), gate_init_bias))
 
         self._init_weights(plucker_init, plucker_init_scale)
+        if tied_init:
+            self.ek.load_state_dict(self.eq.state_dict())
 
     # ─────────────────────────────────────────────────────────────────────
     # Backward-compat ckpt loading

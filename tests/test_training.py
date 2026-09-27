@@ -22,6 +22,19 @@ def test_release_training_config_covers_four_datasets() -> None:
         assert "near_depth_json" in spec
 
 
+def test_training_config_uses_augmentation_and_grouped_learning_rates() -> None:
+    config = yaml.safe_load(_CONFIG.read_text(encoding="utf-8"))
+
+    assert config["model"] == {
+        "plucker_eps": 1e-3,
+        "log_scale_aug_prob": 0.3,
+        "log_scale_aug_range": [-1.2, 1.6],
+    }
+    assert config["optimizer"]["lr_plucker"] == 2e-5
+    assert config["optimizer"]["lr_self_attn"] == 5e-6
+    assert config["optimizer"]["lr_ffn"] == 2e-6
+
+
 def test_build_dataset_rejects_unknown_name() -> None:
     with pytest.raises(ValueError):
         build_dataset({"name": "not_a_dataset", "data_root": "/tmp"}, shared={})

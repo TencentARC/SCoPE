@@ -19,6 +19,7 @@ def _patch_expert(
     disable_spatial_rope: bool,
     cam_residual_layers: list[int] | None,
     scale_gate_hidden: int,
+    tied_init: bool,
     log_scale_aug_prob: float,
     log_scale_aug_range: tuple,
     plucker_eps: float,
@@ -40,6 +41,7 @@ def _patch_expert(
         f"plucker_init_scale={plucker_init_scale}, "
         f"plucker_mlp_hidden={plucker_mlp_hidden}, plucker_scale={plucker_scale}, "
         f"gate_init_bias={gate_init_bias}, scale_gate_hidden={scale_gate_hidden}, "
+        f"tied_init={tied_init}, "
         f"log_scale_aug_prob={log_scale_aug_prob}, "
         f"log_scale_aug_range={log_scale_aug_range}, plucker_eps={plucker_eps}, "
         f"disable_spatial_rope={disable_spatial_rope}, "
@@ -62,6 +64,7 @@ def _patch_expert(
             disable_spatial_rope=disable_spatial_rope,
             enable_cam_residual=enable_cam_residual,
             scale_gate_hidden=scale_gate_hidden,
+            tied_init=tied_init,
             log_scale_aug_prob=log_scale_aug_prob,
             log_scale_aug_range=log_scale_aug_range,
             plucker_eps=plucker_eps,
@@ -104,6 +107,7 @@ def patch_scope(
     disable_spatial_rope: bool = False,
     cam_residual_layers: list[int] | None = None,
     scale_gate_hidden: int = 0,
+    tied_init: bool = True,
     log_scale_aug_prob: float = 0.0,
     log_scale_aug_range: tuple = (-1.2, 1.6),
     plucker_eps: float = 1e-6,
@@ -126,6 +130,7 @@ def patch_scope(
         "disable_spatial_rope": disable_spatial_rope,
         "cam_residual_layers": cam_residual_layers,
         "scale_gate_hidden": scale_gate_hidden,
+        "tied_init": tied_init,
         "log_scale_aug_prob": log_scale_aug_prob,
         "log_scale_aug_range": log_scale_aug_range,
         "plucker_eps": plucker_eps,
